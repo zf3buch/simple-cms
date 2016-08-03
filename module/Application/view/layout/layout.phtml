@@ -1,0 +1,57 @@
+<?php
+/**
+ * ZF3 book Simple CMS Training Application
+ *
+ * @author     Ralf Eggert <ralf@travello.de>
+ * @link       https://github.com/zf3buch/simple-cms
+ * @license    http://opensource.org/licenses/MIT The MIT License (MIT)
+ */
+// set header
+$this->headTitle()->setSeparator(' - ')->setAutoEscape(false);
+$this->headTitle('Simple CMS');
+
+$this->headMeta()->setCharset('UTF-8');
+$this->headMeta()->appendHttpEquiv('X-UA-Compatible', 'IE=edge');
+$this->headMeta()->appendName(
+    'viewport', 'width=device-width, initial-scale=1.0'
+);
+
+$this->headLink(
+    [
+        'rel'  => 'shortcut icon',
+        'href' => '/assets/custom/img/favicon.ico'
+    ]
+);
+$this->headLink()->appendStylesheet(
+    '/assets/vendor/bootstrap/css/bootstrap.min.css'
+);
+$this->headLink()->appendStylesheet(
+    '/assets/vendor/font-awesome/css/font-awesome.min.css'
+);
+$this->headLink()->appendStylesheet('/assets/custom/css/styles.css');
+
+$this->inlineScript()->prependFile(
+    '/assets/vendor/bootstrap/js/bootstrap.min.js', 'text/javascript'
+);
+$this->inlineScript()->prependFile(
+    '/assets/vendor/jquery/jquery.min.js', 'text/javascript'
+);
+?>
+<?= $this->doctype() . "\n"; ?>
+<html lang="en">
+<head>
+<?= $this->headTitle() . "\n"; ?>
+<?= $this->headMeta() . "\n"; ?>
+<?= $this->headLink() . "\n"; ?>
+<?= $this->headScript() . "\n"; ?>
+<?= $this->headStyle() . "\n"; ?>
+</head>
+<body>
+<?= $this->header; ?>
+<div class="container">
+<?= $this->content; ?>
+</div>
+<?= $this->footer; ?>
+<?= $this->inlineScript() ?>
+</body>
+</html>
