@@ -8,4 +8,25 @@
  *
  */
 
-return [];
+use PageFrontend\Controller\DisplayController;
+use Zend\Router\Http\Segment;
+
+return [
+    'router' => [
+        'routes' => [
+            'page-frontend' => [
+                'type'    => Segment::class,
+                'options' => [
+                    'route'    => '/page[/:url]',
+                    'defaults' => [
+                        'controller' => DisplayController::class,
+                        'action'     => 'index',
+                    ],
+                    'constraints' => [
+                        'url'     => '[a-z1-9-]*',
+                    ],
+                ],
+            ],
+        ],
+    ],
+];
