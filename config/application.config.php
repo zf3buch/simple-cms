@@ -12,6 +12,9 @@ return [
         'Zend\Session',
         'Zend\Router',
         'Zend\Validator',
+        'PageFrontend',
+        'PageBackend',
+        'PageModel',
         'Application',
     ],
     'module_listener_options' => [

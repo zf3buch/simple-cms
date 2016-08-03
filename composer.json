@@ -30,6 +30,9 @@
   "autoload": {
     "psr-4": {
       "Application\\": "module/Application/src/",
+      "PageFrontend\\": "module/PageFrontend/src/",
+      "PageBackend\\": "module/PageBackend/src/",
+      "PageModel\\": "module/PageModel/src/",
       "Scripts\\": "script/"
     }
   },
