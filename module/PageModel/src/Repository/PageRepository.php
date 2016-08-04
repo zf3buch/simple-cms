@@ -10,7 +10,8 @@
 
 namespace PageModel\Repository;
 
-use Zend\Paginator\Adapter\ArrayAdapter;
+use PageModel\Entity\PageEntity;
+use PageModel\Storage\PageStorageInterface;
 use Zend\Paginator\Paginator;
 
 /**
@@ -21,25 +22,18 @@ use Zend\Paginator\Paginator;
 class PageRepository implements PageRepositoryInterface
 {
     /**
-     * @var array
+     * @var PageStorageInterface
      */
-    private $pageData = [];
-
-    /**
-     * @var array
-     */
-    private $categoryData = [];
+    private $pageStorage;
 
     /**
      * PageRepository constructor.
      *
-     * @param array $pageData
-     * @param array $categoryData
+     * @param PageStorageInterface $pageStorage
      */
-    public function __construct(array $pageData, array $categoryData)
+    public function __construct(PageStorageInterface $pageStorage)
     {
-        $this->pageData     = $pageData;
-        $this->categoryData = $categoryData;
+        $this->pageStorage = $pageStorage;
     }
 
     /**
@@ -52,25 +46,7 @@ class PageRepository implements PageRepositoryInterface
      */
     public function getPagesByPage($page = 1, $count = 5)
     {
-        $pageList = $this->pageData;
-
-        $paginator = new Paginator(
-            new ArrayAdapter($pageList)
-        );
-        $paginator->setCurrentPageNumber($page);
-        $paginator->setItemCountPerPage($count);
-
-        /** @var \ArrayIterator $currentItemsIterator */
-        $currentItemsIterator = $paginator->getCurrentItems();
-
-        foreach ($currentItemsIterator as $key => $page) {
-            $category = $this->categoryData[$page['category']];
-            $page['category'] = $category;
-
-            $currentItemsIterator->offsetSet($key, $page);
-        }
-
-        return $paginator;
+        return $this->pageStorage->fetchPageCollection($page, $count);
     }
 
     /**
@@ -79,29 +55,13 @@ class PageRepository implements PageRepositoryInterface
      * @param string $url
      * @param bool   $approved
      *
-     * @return mixed
+     * @return Paginator
      */
     public function getPagesByCategory($url, $approved = true)
     {
-        $pageList = [];
-
-        foreach ($this->pageData as $key => $page) {
-            $category = $this->getCategoryByUrl($url);
-
-            if ($page['category'] != $category['id']) {
-                continue;
-            }
-
-            if ($approved && $page['status'] != 'approved') {
-                continue;
-            }
-
-            $pageList[$key] = $page;
-
-            $pageList[$key]['category'] = $category;
-        }
-
-        return $pageList;
+        return $this->pageStorage->fetchPageCollectionByCategory(
+            $url, $approved
+        );
     }
 
     /**
@@ -109,20 +69,11 @@ class PageRepository implements PageRepositoryInterface
      *
      * @param $id
      *
-     * @return array|bool
+     * @return PageEntity|bool
      */
     public function getSinglePageById($id)
     {
-        if (!isset($this->pageData[$id])) {
-            return false;
-        }
-
-        $page     = $this->pageData[$id];
-        $category = $this->categoryData[$page['category']];
-
-        $page['category'] = $category;
-
-        return $page;
+        return $this->pageStorage->fetchPageEntityById($id);
     }
 
     /**
@@ -130,17 +81,11 @@ class PageRepository implements PageRepositoryInterface
      *
      * @param $url
      *
-     * @return array|bool
+     * @return PageEntity|bool
      */
     public function getSinglePageByUrl($url)
     {
-        foreach ($this->pageData as $page) {
-            if ($page['url'] == $url) {
-                return $this->getSinglePageById($page['id']);
-            }
-        }
-
-        return false;
+        return $this->pageStorage->fetchPageEntityByUrl($url);
     }
 
     /**
@@ -148,34 +93,10 @@ class PageRepository implements PageRepositoryInterface
      *
      * @param integer $count
      *
-     * @return array|bool
+     * @return Paginator
      */
     public function getRandomPages($count = 4)
     {
-        $pageList = [];
-
-        foreach (array_rand($this->pageData, $count) as $id) {
-            $pageList[$id] = $this->getSinglePageById($id);
-        }
-
-        return $pageList;
-    }
-
-    /**
-     * Get category by url
-     *
-     * @param $url
-     *
-     * @return bool|array
-     */
-    private function getCategoryByUrl($url)
-    {
-        foreach ($this->categoryData as $category) {
-            if ($category['url'] == $url) {
-                return $category;
-            }
-        }
-
-        return false;
+        return $this->pageStorage->fetchRandomPageCollection($count);
     }
 }
