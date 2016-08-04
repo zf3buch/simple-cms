@@ -61,11 +61,11 @@ class DisplayController extends AbstractActionController
             return $this->redirect()->toRoute('home', [], true);
         }
 
-        $category = $this->categoryRepository->getSingleCategoryById();
+        $category = $this->categoryRepository->getSingleCategoryByUrl($url);
 
         $viewModel = new ViewModel();
         $viewModel->setVariable('pageList', $pageList);
-        $viewModel->setVariable('category', $pageList->getItem()->getCategory());
+        $viewModel->setVariable('category', $category);
 
         return $viewModel;
     }

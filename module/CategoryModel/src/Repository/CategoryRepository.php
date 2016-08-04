@@ -10,6 +10,7 @@
 
 namespace CategoryModel\Repository;
 
+use CategoryModel\Entity\CategoryEntity;
 use CategoryModel\Storage\CategoryStorageInterface;
 use Zend\Paginator\Paginator;
 
@@ -53,12 +54,24 @@ class CategoryRepository implements CategoryRepositoryInterface
     /**
      * Get a single category by id
      *
-     * @param $id
+     * @param int $id
      *
      * @return array|bool
      */
     public function getSingleCategoryById($id)
     {
-        return $this->categoryStorage->fetchCategoryEntity($id);
+        return $this->categoryStorage->fetchCategoryEntityById($id);
+    }
+
+    /**
+     * Get a single category by url
+     *
+     * @param string $url
+     *
+     * @return CategoryEntity|bool
+     */
+    public function getSingleCategoryByUrl($url)
+    {
+        return $this->categoryStorage->fetchCategoryEntityByUrl($url);
     }
 }

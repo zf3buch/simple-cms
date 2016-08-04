@@ -93,7 +93,7 @@ class PageDbStorage implements PageStorageInterface
     public function fetchPageCollectionByCategory($url, $approved = true)
     {
         $select = $this->tableGateway->getSql()->select();
-        $select->where->equalTo('category_url', $url);
+        $select->where->equalTo('category.url', $url);
         $select->order(['page.created' => 'DESC']);
 
         $select = $this->addCategoryJoinToSelect($select);
