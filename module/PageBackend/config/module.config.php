@@ -42,7 +42,7 @@ return [
                             ],
                         ],
                     ],
-                    'show' => [
+                    'show'   => [
                         'type'    => Segment::class,
                         'options' => [
                             'route'       => '/show[/:id]',
@@ -50,11 +50,11 @@ return [
                                 'action' => 'show',
                             ],
                             'constraints' => [
-                                'id'     => '[1-9][0-9]*',
+                                'id' => '[1-9][0-9]*',
                             ],
                         ],
                     ],
-                    'page' => [
+                    'page'   => [
                         'type'    => Segment::class,
                         'options' => [
                             'route'       => '/:page',
