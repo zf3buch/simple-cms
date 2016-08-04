@@ -7,32 +7,37 @@
  * @license    http://opensource.org/licenses/MIT The MIT License (MIT)
  */
 
+use PageModel\Entity\PageEntity;
+
 ?>
 <div class="page-header">
   <h1>Willkommen zum Simple CMS!</h1>
 </div>
 
 <div class="row">
+  <?php /** @var PageEntity $page */ ?>
   <?php foreach ($this->randomPages as $page) : ?>
     <?php
-      $text = strip_tags($page['text']);
+      $text = strip_tags($page->getText());
       $text = implode(' ', array_slice(explode(' ', $text), 0, 50));
 
-      $pageUrl = $this->url('page', ['url' => $page['url']]);
-      $categoryUrl = $this->url('category', ['url' => $page['category']['url']]);
+      $pageUrl = $this->url('page', ['url' => $page->getUrl()]);
+      $categoryUrl = $this->url(
+          'category', ['url' => $page->getCategory()->getUrl()]
+      );
     ?>
     <div class="col-sm-6">
       <div class="panel panel-primary">
         <div class="panel-heading clearfix">
           <strong>
             <a href="<?= $pageUrl; ?>">
-              <?= $page['title'] ?>
+              <?= $page->getTitle() ?>
             </a>
           </strong>
         </div>
         <div class="panel-body">
           <div class="col-sm-4">
-            <img src="<?= $page['category']['image'] ?>"
+            <img src="<?= $page->getCategory()->getImage() ?>"
                  class="img-responsive center-block">
           </div>
           <p><?= $text; ?> ...</p>
@@ -41,7 +46,7 @@
               Seite anzeigen
             </a>
             <a href="<?= $categoryUrl; ?>" class="btn btn-primary">
-              Alle <?= $page['category']['name'] ?> Seiten
+              Alle <?= $page->getCategory()->getName() ?> Seiten
             </a>
           </p>
         </div>

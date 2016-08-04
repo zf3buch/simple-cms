@@ -10,7 +10,7 @@
 
 namespace CategoryModel\Repository;
 
-use CategoryModel\Storage\Db\CategoryDbStorage;
+use CategoryModel\Storage\CategoryStorageInterface;
 use Interop\Container\ContainerInterface;
 use Zend\ServiceManager\Factory\FactoryInterface;
 
@@ -32,7 +32,9 @@ class CategoryRepositoryFactory implements FactoryInterface
         ContainerInterface $container, $requestedName,
         array $options = null
     ) {
-        $categoryDbStorage = $container->get(CategoryDbStorage::class);
+        $categoryDbStorage = $container->get(
+            CategoryStorageInterface::class
+        );
 
         return new CategoryRepository($categoryDbStorage);
     }

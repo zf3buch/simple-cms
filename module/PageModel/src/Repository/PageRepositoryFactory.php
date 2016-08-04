@@ -12,6 +12,7 @@ namespace PageModel\Repository;
 
 use Interop\Container\ContainerInterface;
 use PageModel\Storage\Db\PageDbStorage;
+use PageModel\Storage\PageStorageInterface;
 use Zend\ServiceManager\Factory\FactoryInterface;
 
 /**
@@ -26,7 +27,7 @@ class PageRepositoryFactory implements FactoryInterface
         $requestedName,
         array $options = null
     ) {
-        $pageDbStorage = $container->get(PageDbStorage::class);
+        $pageDbStorage = $container->get(PageStorageInterface::class);
 
         return new PageRepository($pageDbStorage);
     }
