@@ -10,7 +10,9 @@
 
 namespace PageBackend\Controller;
 
+use PageBackend\Form\PageFormInterface;
 use PageModel\Repository\PageRepositoryInterface;
+use Zend\Form\Form;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 
@@ -27,6 +29,11 @@ class ModifyController extends AbstractActionController
     private $pageRepository;
 
     /**
+     * @var PageFormInterface|Form
+     */
+    private $pageForm;
+
+    /**
      * @param PageRepositoryInterface $pageRepository
      */
     public function setPageRepository($pageRepository)
@@ -35,11 +42,28 @@ class ModifyController extends AbstractActionController
     }
 
     /**
+     * @param PageFormInterface $pageForm
+     */
+    public function setPageForm($pageForm)
+    {
+        $this->pageForm = $pageForm;
+    }
+
+    /**
      * @return ViewModel
      */
     public function addAction()
     {
+        $this->pageForm->setAttribute(
+            'action',
+            $this->url()->fromRoute(
+                'page-backend/modify', ['action' => 'add'], true
+            )
+        );
+        $this->pageForm->prepare();
+
         $viewModel = new ViewModel();
+        $viewModel->setVariable('pageForm', $this->pageForm);
 
         return $viewModel;
     }
@@ -49,6 +73,8 @@ class ModifyController extends AbstractActionController
      */
     public function editAction()
     {
+        $this->pageForm->editMode();
+
         $id = $this->params()->fromRoute('id');
 
         if (!$id) {
@@ -61,8 +87,20 @@ class ModifyController extends AbstractActionController
             return $this->redirect()->toRoute('page-backend', [], true);
         }
 
+        $this->pageForm->bind($page);
+        $this->pageForm->setAttribute(
+            'action',
+            $this->url()->fromRoute(
+                'page-backend/modify',
+                ['action' => 'edit', 'id' => $id],
+                true
+            )
+        );
+        $this->pageForm->prepare();
+
         $viewModel = new ViewModel();
         $viewModel->setVariable('page', $page);
+        $viewModel->setVariable('pageForm', $this->pageForm);
 
         return $viewModel;
     }

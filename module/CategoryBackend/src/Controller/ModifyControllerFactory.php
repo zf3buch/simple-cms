@@ -10,8 +10,11 @@
 
 namespace CategoryBackend\Controller;
 
+use CategoryBackend\Form\CategoryForm;
+use CategoryBackend\Form\CategoryFormInterface;
 use CategoryModel\Repository\CategoryRepositoryInterface;
 use Interop\Container\ContainerInterface;
+use Zend\Form\FormElementManager\FormElementManagerV3Polyfill;
 use Zend\ServiceManager\Factory\FactoryInterface;
 
 /**
@@ -32,12 +35,19 @@ class ModifyControllerFactory implements FactoryInterface
         ContainerInterface $container, $requestedName,
         array $options = null
     ) {
+        /** @var FormElementManagerV3Polyfill $formElementManager */
+        $formElementManager = $container->get('FormElementManager');
+
         $categoryRepository = $container->get(
             CategoryRepositoryInterface::class
         );
 
+        /** @var CategoryFormInterface $categoryForm */
+        $categoryForm = $formElementManager->get(CategoryForm::class);
+
         $controller = new ModifyController();
         $controller->setCategoryRepository($categoryRepository);
+        $controller->setCategoryForm($categoryForm);
 
         return $controller;
     }

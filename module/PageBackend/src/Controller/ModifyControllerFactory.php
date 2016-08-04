@@ -10,8 +10,11 @@
 
 namespace PageBackend\Controller;
 
+use PageBackend\Form\PageForm;
+use PageBackend\Form\PageFormInterface;
 use PageModel\Repository\PageRepositoryInterface;
 use Interop\Container\ContainerInterface;
+use Zend\Form\FormElementManager\FormElementManagerV3Polyfill;
 use Zend\ServiceManager\Factory\FactoryInterface;
 
 /**
@@ -26,12 +29,19 @@ class ModifyControllerFactory implements FactoryInterface
         $requestedName,
         array $options = null
     ) {
+        /** @var FormElementManagerV3Polyfill $formElementManager */
+        $formElementManager = $container->get('FormElementManager');
+
         $pageRepository = $container->get(
             PageRepositoryInterface::class
         );
 
+        /** @var PageFormInterface $pageForm */
+        $pageForm = $formElementManager->get(PageForm::class);
+        
         $controller = new ModifyController();
         $controller->setPageRepository($pageRepository);
+        $controller->setPageForm($pageForm);
 
         return $controller;
     }

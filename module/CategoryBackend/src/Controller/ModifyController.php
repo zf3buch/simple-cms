@@ -10,7 +10,9 @@
 
 namespace CategoryBackend\Controller;
 
+use CategoryBackend\Form\CategoryFormInterface;
 use CategoryModel\Repository\CategoryRepositoryInterface;
+use Zend\Form\Form;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 
@@ -27,11 +29,24 @@ class ModifyController extends AbstractActionController
     private $categoryRepository;
 
     /**
+     * @var CategoryFormInterface|Form
+     */
+    private $categoryForm;
+
+    /**
      * @param CategoryRepositoryInterface $categoryRepository
      */
     public function setCategoryRepository($categoryRepository)
     {
         $this->categoryRepository = $categoryRepository;
+    }
+
+    /**
+     * @param CategoryFormInterface $categoryForm
+     */
+    public function setCategoryForm($categoryForm)
+    {
+        $this->categoryForm = $categoryForm;
     }
 
     /**
@@ -41,7 +56,17 @@ class ModifyController extends AbstractActionController
      */
     public function addAction()
     {
+        $this->categoryForm->addMode();
+        $this->categoryForm->setAttribute(
+            'action',
+            $this->url()->fromRoute(
+                'category-backend/modify', ['action' => 'add'], true
+            )
+        );
+        $this->categoryForm->prepare();
+
         $viewModel = new ViewModel();
+        $viewModel->setVariable('categoryForm', $this->categoryForm);
 
         return $viewModel;
     }
@@ -53,6 +78,8 @@ class ModifyController extends AbstractActionController
      */
     public function editAction()
     {
+        $this->categoryForm->editMode();
+
         $id = $this->params()->fromRoute('id');
 
         if (!$id) {
@@ -65,8 +92,20 @@ class ModifyController extends AbstractActionController
             return $this->redirect()->toRoute('category-backend', [], true);
         }
 
+        $this->categoryForm->bind($category);
+        $this->categoryForm->setAttribute(
+            'action',
+            $this->url()->fromRoute(
+                'category-backend/modify',
+                ['action' => 'edit', 'id' => $id],
+                true
+            )
+        );
+        $this->categoryForm->prepare();
+
         $viewModel = new ViewModel();
         $viewModel->setVariable('category', $category);
+        $viewModel->setVariable('categoryForm', $this->categoryForm);
 
         return $viewModel;
     }
