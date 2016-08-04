@@ -10,6 +10,7 @@
 
 namespace PageFrontend\Controller;
 
+use CategoryModel\Repository\CategoryRepositoryInterface;
 use PageModel\Repository\PageRepositoryInterface;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
@@ -27,11 +28,24 @@ class DisplayController extends AbstractActionController
     private $pageRepository;
 
     /**
+     * @var CategoryRepositoryInterface
+     */
+    private $categoryRepository;
+
+    /**
      * @param PageRepositoryInterface $pageRepository
      */
     public function setPageRepository($pageRepository)
     {
         $this->pageRepository = $pageRepository;
+    }
+
+    /**
+     * @param CategoryRepositoryInterface $categoryRepository
+     */
+    public function setCategoryRepository($categoryRepository)
+    {
+        $this->categoryRepository = $categoryRepository;
     }
 
     /**
@@ -47,9 +61,11 @@ class DisplayController extends AbstractActionController
             return $this->redirect()->toRoute('home', [], true);
         }
 
+        $category = $this->categoryRepository->getSingleCategoryById();
+
         $viewModel = new ViewModel();
         $viewModel->setVariable('pageList', $pageList);
-        $viewModel->setVariable('category', $pageList[key($pageList)]['category']);
+        $viewModel->setVariable('category', $pageList->getItem()->getCategory());
 
         return $viewModel;
     }
@@ -67,7 +83,7 @@ class DisplayController extends AbstractActionController
 
         $page = $this->pageRepository->getSinglePageByUrl($url);
 
-        if (!$page || $page['status'] != 'approved') {
+        if (!$page || $page->getStatus() != 'approved') {
             return $this->redirect()->toRoute('home', [], true);
         }
 

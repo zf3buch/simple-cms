@@ -10,8 +10,9 @@
 
 namespace PageFrontend\Controller;
 
-use PageModel\Repository\PageRepositoryInterface;
+use CategoryModel\Repository\CategoryRepositoryInterface;
 use Interop\Container\ContainerInterface;
+use PageModel\Repository\PageRepositoryInterface;
 use Zend\ServiceManager\Factory\FactoryInterface;
 
 /**
@@ -26,12 +27,16 @@ class DisplayControllerFactory implements FactoryInterface
         $requestedName,
         array $options = null
     ) {
-        $pageRepository = $container->get(
+        $pageRepository     = $container->get(
             PageRepositoryInterface::class
+        );
+        $categoryRepository = $container->get(
+            CategoryRepositoryInterface::class
         );
 
         $controller = new DisplayController();
         $controller->setPageRepository($pageRepository);
+        $controller->setCategoryRepository($categoryRepository);
 
         return $controller;
     }
