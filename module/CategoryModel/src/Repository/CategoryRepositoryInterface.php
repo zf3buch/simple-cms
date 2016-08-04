@@ -47,4 +47,38 @@ interface CategoryRepositoryInterface
      * @return CategoryEntity|bool
      */
     public function getSingleCategoryByUrl($url);
+
+    /**
+     * Get category options
+     *
+     * @return array
+     */
+    public function getCategoryOptions();
+
+    /**
+     * Create a new category based on array data
+     *
+     * @param array $data
+     *
+     * @return CategoryEntity
+     */
+    public function createCategoryFromData(array $data = []);
+
+    /**
+     * Save category
+     *
+     * @param CategoryEntity $category
+     *
+     * @return boolean
+     */
+    public function saveCategory(CategoryEntity $category);
+
+    /**
+     * Delete an category
+     *
+     * @param CategoryEntity $category
+     *
+     * @return boolean
+     */
+    public function deleteCategory(CategoryEntity $category);
 }

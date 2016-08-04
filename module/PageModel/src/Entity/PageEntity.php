@@ -212,4 +212,30 @@ class PageEntity
     {
         $this->author = trim($author);
     }
+
+    /**
+     * Update advert
+     */
+    public function update()
+    {
+        $this->setUpdated(new DateTime());
+    }
+
+    /**
+     * Approve advert
+     */
+    public function approve()
+    {
+        $this->setStatus('approved');
+        $this->setUpdated(new DateTime());
+    }
+
+    /**
+     * Block advert
+     */
+    public function block()
+    {
+        $this->setStatus('blocked');
+        $this->setUpdated(new DateTime());
+    }
 }

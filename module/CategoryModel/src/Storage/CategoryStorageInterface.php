@@ -58,6 +58,20 @@ interface CategoryStorageInterface
     public function fetchCategoryEntityByUrl($url);
 
     /**
+     * Fetch all categories for an option list
+     *
+     * @return mixed
+     */
+    public function fetchCategoryOptions();
+
+    /**
+     * Get next id for category entity
+     *
+     * @return integer
+     */
+    public function nextId();
+
+    /**
      * Insert new category entity to storage
      *
      * @param CategoryEntity $category

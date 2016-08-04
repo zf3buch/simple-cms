@@ -115,6 +115,43 @@ class CategoryDbStorage implements CategoryStorageInterface
     }
 
     /**
+     * Fetch all categories for an option list
+     *
+     * @return mixed
+     */
+    public function fetchCategoryOptions()
+    {
+        $select = $this->tableGateway->getSql()->select();
+
+        /** @var ResultSet $resultSet */
+        $resultSet = $this->tableGateway->selectWith($select);
+
+        $options = [];
+
+        /** @var CategoryEntity $category */
+        foreach ($resultSet as $category) {
+            $options[$category->getId()] = $category->getName();
+        }
+
+        return $options;
+    }
+
+    /**
+     * Get next id for category entity
+     *
+     * @return integer
+     */
+    public function nextId()
+    {
+        $insert = $this->tableGateway->getSql()->insert();
+        $insert->values(['id' => null]);
+
+        $this->tableGateway->insertWith($insert);
+
+        return $this->tableGateway->getLastInsertValue();
+    }
+
+    /**
      * Insert new category entity to storage
      *
      * @param CategoryEntity $category

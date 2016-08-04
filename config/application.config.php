@@ -9,6 +9,7 @@
 
 return [
     'modules' => [
+        'TravelloFilter',
         'Zend\Db',
         'Zend\Filter',
         'Zend\Hydrator',

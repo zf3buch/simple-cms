@@ -179,6 +179,21 @@ class PageDbStorage implements PageStorageInterface
     }
 
     /**
+     * Get next id for advert entity
+     *
+     * @return integer
+     */
+    public function nextId()
+    {
+        $insert = $this->tableGateway->getSql()->insert();
+        $insert->values(['id' => null]);
+
+        $this->tableGateway->insertWith($insert);
+
+        return $this->tableGateway->getLastInsertValue();
+    }
+
+    /**
      * Insert new page entity to storage
      *
      * @param PageEntity $page

@@ -68,6 +68,13 @@ interface PageStorageInterface
     public function fetchPageEntityByUrl($url);
 
     /**
+     * Get next id for page entity
+     *
+     * @return integer
+     */
+    public function nextId();
+
+    /**
      * Insert new page entity to storage
      *
      * @param PageEntity $page

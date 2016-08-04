@@ -12,6 +12,9 @@ namespace CategoryModel\Repository;
 
 use CategoryModel\Entity\CategoryEntity;
 use CategoryModel\Storage\CategoryStorageInterface;
+use DateTime;
+use TravelloFilter\Filter\StringToUrlSlug;
+use Zend\Filter\StaticFilter;
 use Zend\Paginator\Paginator;
 
 /**
@@ -73,5 +76,69 @@ class CategoryRepository implements CategoryRepositoryInterface
     public function getSingleCategoryByUrl($url)
     {
         return $this->categoryStorage->fetchCategoryEntityByUrl($url);
+    }
+
+    /**
+     * Get category options
+     *
+     * @return array
+     */
+    public function getCategoryOptions()
+    {
+        return $this->categoryStorage->fetchCategoryOptions();
+    }
+
+    /**
+     * Create a new category based on array data
+     *
+     * @param array $data
+     *
+     * @return CategoryEntity
+     */
+    public function createCategoryFromData(array $data = [])
+    {
+        $nextId = $this->categoryStorage->nextId();
+
+        $url = StaticFilter::execute(
+            $data['name'], StringToUrlSlug::class
+        );
+
+        $category = new CategoryEntity();
+        $category->setId($nextId);
+        $category->setUpdated(new DateTime());
+        $category->setStatus($data['status']);
+        $category->setName($data['name']);
+        $category->setUrl($url);
+        $category->setDescription($data['description']);
+
+        return $category;
+    }
+
+    /**
+     * Save category
+     *
+     * @param CategoryEntity $category
+     *
+     * @return boolean
+     */
+    public function saveCategory(CategoryEntity $category)
+    {
+        if (!$category->getId()) {
+            return $this->categoryStorage->insertCategory($category);
+        } else {
+            return $this->categoryStorage->updateCategory($category);
+        }
+    }
+
+    /**
+     * Delete an category
+     *
+     * @param CategoryEntity $category
+     *
+     * @return boolean
+     */
+    public function deleteCategory(CategoryEntity $category)
+    {
+        return $this->categoryStorage->deleteCategory($category);
     }
 }

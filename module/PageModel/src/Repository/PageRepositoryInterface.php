@@ -66,4 +66,31 @@ interface PageRepositoryInterface
      * @return Paginator
      */
     public function getRandomPages($count = 4);
+
+    /**
+     * Create a new page based on array data
+     *
+     * @param array $data
+     *
+     * @return PageEntity
+     */
+    public function createPageFromData(array $data = []);
+
+    /**
+     * Save page
+     *
+     * @param PageEntity $page
+     *
+     * @return boolean
+     */
+    public function savePage(PageEntity $page);
+
+    /**
+     * Delete an page
+     *
+     * @param PageEntity $page
+     *
+     * @return boolean
+     */
+    public function deletePage(PageEntity $page);
 }
