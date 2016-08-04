@@ -11,6 +11,7 @@ namespace Application\Controller;
 
 use PageModel\Repository\PageRepositoryInterface;
 use Zend\Mvc\Controller\AbstractActionController;
+use Zend\View\Model\ViewModel;
 
 /**
  * Class IndexController
@@ -39,7 +40,9 @@ class IndexController extends AbstractActionController
     {
         $randomPages = $this->pageRepository->getRandomPages();
 
-        var_dump($randomPages);
-        exit;
+        $viewModel = new ViewModel();
+        $viewModel->setVariable('randomPages', $randomPages);
+
+        return $viewModel;
     }
 }
