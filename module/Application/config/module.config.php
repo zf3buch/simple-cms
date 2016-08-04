@@ -30,23 +30,12 @@ return [
                     ],
                 ],
             ],
-            'test' => [
-                'type'    => Literal::class,
-                'options' => [
-                    'route'    => '/test',
-                    'defaults' => [
-                        'controller' => TestController::class,
-                        'action'     => 'index',
-                    ],
-                ],
-            ],
         ],
     ],
 
     'controllers' => [
         'factories' => [
             IndexController::class => IndexControllerFactory::class,
-            TestController::class  => TestControllerFactory::class,
         ],
     ],
 
