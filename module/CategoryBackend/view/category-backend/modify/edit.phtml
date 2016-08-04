@@ -8,7 +8,11 @@
  *
  */
 
+use CategoryBackend\Form\CategoryFormInterface;
 use CategoryModel\Entity\CategoryEntity;
+
+/** @var CategoryFormInterface $form */
+$form = $this->categoryForm;
 
 /** @var CategoryEntity $category */
 $category = $this->category;
@@ -63,5 +67,51 @@ $this->headTitle('Kategorien bearbeiten');
   </a>
 </p>
 <div class="well">
-  In Kürze mehr...
+  <?= $this->form()->openTag($form); ?>
+  <?= $this->formElement($form->get('csrf')); ?>
+  <div class="form-group">
+    <label class="col-sm-2 control-label">Bild</label>
+    <div class="col-sm-10 form-control-static">
+      <img src="<?= $category->getImage() ?>" class="row col-xs-3 img-responsive">
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="col-sm-2 control-label">Geändert</label>
+    <div class="col-sm-10 form-control-static">
+      <?= $category->getUpdated()->format('d.m.Y H:i:s')  ?>
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="col-sm-2 control-label">Status</label>
+    <div class="col-sm-10 form-control-static">
+      <?= $category->getStatus() ?>
+    </div>
+  </div>
+  <div class="form-group">
+    <?= $this->formLabel($form->get('name')); ?>
+    <div class="col-sm-10">
+      <?= $this->formElement($form->get('name')); ?>
+      <?= $this->formElementErrors($form->get('name')); ?>
+    </div>
+  </div>
+  <div class="form-group">
+    <?= $this->formLabel($form->get('description')); ?>
+    <div class="col-sm-10">
+      <?= $this->formElement($form->get('description')); ?>
+      <?= $this->formElementErrors($form->get('description')); ?>
+    </div>
+  </div>
+  <div class="form-group">
+    <?= $this->formLabel($form->get('image')); ?>
+    <div class="col-sm-10">
+      <?= $this->formElement($form->get('image')); ?>
+      <?= $this->formElementErrors($form->get('image')); ?>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <?= $this->formElement($form->get('save_category')); ?>
+    </div>
+  </div>
+  <?= $this->form()->closeTag(); ?>
 </div>
