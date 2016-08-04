@@ -8,6 +8,15 @@
  *
  */
 
+/**
+ * ZF3 book Simple CMS Training Application
+ *
+ * @author     Ralf Eggert <ralf@travello.de>
+ * @link       https://github.com/zf3buch/simple-cms
+ * @license    http://opensource.org/licenses/MIT The MIT License (MIT)
+ *
+ */
+
 namespace CategoryModel\Storage;
 
 use CategoryModel\Entity\CategoryEntity;
@@ -33,11 +42,20 @@ interface CategoryStorageInterface
     /**
      * Fetch an category entity by id from storage
      *
-     * @param $id
+     * @param integer $id
      *
      * @return CategoryEntity
      */
-    public function fetchCategoryEntity($id);
+    public function fetchCategoryEntityById($id);
+
+    /**
+     * Fetch an category entity by url from storage
+     *
+     * @param string $url
+     *
+     * @return CategoryEntity
+     */
+    public function fetchCategoryEntityByUrl($url);
 
     /**
      * Insert new category entity to storage
