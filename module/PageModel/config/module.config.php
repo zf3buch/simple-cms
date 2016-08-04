@@ -11,6 +11,8 @@
 use PageModel\Config\PageConfigFactory;
 use PageModel\Config\PageConfigInterface;
 use PageModel\Hydrator\PageHydrator;
+use PageModel\InputFilter\PageInputFilter;
+use PageModel\InputFilter\PageInputFilterFactory;
 use PageModel\Repository\PageRepositoryFactory;
 use PageModel\Repository\PageRepositoryInterface;
 use PageModel\Storage\Db\PageDbStorageFactory;
@@ -31,6 +33,12 @@ return [
     'hydrators' => [
         'factories' => [
             PageHydrator::class => InvokableFactory::class,
+        ],
+    ],
+
+    'input_filters' => [
+        'factories' => [
+            PageInputFilter::class => PageInputFilterFactory::class,
         ],
     ],
 ];

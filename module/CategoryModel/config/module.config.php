@@ -11,6 +11,8 @@
 use CategoryModel\Config\CategoryConfigFactory;
 use CategoryModel\Config\CategoryConfigInterface;
 use CategoryModel\Hydrator\CategoryHydrator;
+use CategoryModel\InputFilter\CategoryInputFilter;
+use CategoryModel\InputFilter\CategoryInputFilterFactory;
 use CategoryModel\Repository\CategoryRepositoryFactory;
 use CategoryModel\Repository\CategoryRepositoryInterface;
 use CategoryModel\Storage\CategoryStorageInterface;
@@ -33,6 +35,13 @@ return [
     'hydrators' => [
         'factories' => [
             CategoryHydrator::class => InvokableFactory::class,
+        ],
+    ],
+
+    'input_filters' => [
+        'factories' => [
+            CategoryInputFilter::class =>
+                CategoryInputFilterFactory::class,
         ],
     ],
 ];
