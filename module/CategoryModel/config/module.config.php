@@ -9,9 +9,17 @@
  */
 
 use CategoryModel\Hydrator\CategoryHydrator;
+use CategoryModel\Storage\Db\CategoryDbStorage;
+use CategoryModel\Storage\Db\CategoryDbStorageFactory;
 use Zend\ServiceManager\Factory\InvokableFactory;
 
 return [
+    'service_manager' => [
+        'factories' => [
+            CategoryDbStorage::class => CategoryDbStorageFactory::class,
+        ],
+    ],
+    
     'hydrators' => [
         'factories' => [
             CategoryHydrator::class => InvokableFactory::class,
