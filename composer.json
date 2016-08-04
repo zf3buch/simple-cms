@@ -39,6 +39,7 @@
       "PageBackend\\": "module/PageBackend/src/",
       "PageModel\\": "module/PageModel/src/",
       "CategoryModel\\": "module/CategoryModel/src/",
+      "CategoryBackend\\": "module/CategoryBackend/src/",
       "Scripts\\": "script/"
     }
   },

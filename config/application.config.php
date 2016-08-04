@@ -21,6 +21,7 @@ return [
         'PageBackend',
         'PageModel',
         'CategoryModel',
+        'CategoryBackend',
         'Application',
     ],
     'module_listener_options' => [
