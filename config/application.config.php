@@ -9,6 +9,7 @@
 
 return [
     'modules' => [
+        'Zend\Form',
         'Zend\InputFilter',
         'TravelloFilter',
         'Zend\Db',

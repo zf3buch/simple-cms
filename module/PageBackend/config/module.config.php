@@ -12,6 +12,8 @@ use PageBackend\Controller\DisplayController;
 use PageBackend\Controller\DisplayControllerFactory;
 use PageBackend\Controller\ModifyController;
 use PageBackend\Controller\ModifyControllerFactory;
+use PageBackend\Form\PageForm;
+use PageBackend\Form\PageFormFactory;
 use Zend\Navigation\Page\Mvc;
 use Zend\Router\Http\Literal;
 use Zend\Router\Http\Segment;
@@ -81,6 +83,12 @@ return [
             include PAGE_BACKEND_MODULE_ROOT . '/config/template_map.config.php',
         'template_path_stack' => [
             PAGE_BACKEND_MODULE_ROOT . '/view'
+        ],
+    ],
+
+    'form_elements' => [
+        'factories' => [
+            PageForm::class => PageFormFactory::class,
         ],
     ],
 
