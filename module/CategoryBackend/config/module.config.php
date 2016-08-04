@@ -12,8 +12,8 @@ use CategoryBackend\Controller\DisplayController;
 use CategoryBackend\Controller\DisplayControllerFactory;
 use CategoryBackend\Controller\ModifyController;
 use CategoryBackend\Controller\ModifyControllerFactory;
-use CategoryBackend\Form\CategoryForm;
 use CategoryBackend\Form\CategoryFormFactory;
+use CategoryBackend\Form\CategoryFormInterface;
 use Zend\Navigation\Page\Mvc;
 use Zend\Router\Http\Literal;
 use Zend\Router\Http\Segment;
@@ -80,7 +80,8 @@ return [
 
     'view_manager' => [
         'template_map'        =>
-            include CATEGORY_BACKEND_MODULE_ROOT . '/config/template_map.config.php',
+            include CATEGORY_BACKEND_MODULE_ROOT
+                . '/config/template_map.config.php',
         'template_path_stack' => [
             CATEGORY_BACKEND_MODULE_ROOT . '/view'
         ],
@@ -88,7 +89,7 @@ return [
 
     'form_elements' => [
         'factories' => [
-            CategoryForm::class => CategoryFormFactory::class,
+            CategoryFormInterface::class => CategoryFormFactory::class,
         ],
     ],
 
