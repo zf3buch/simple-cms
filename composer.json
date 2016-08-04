@@ -35,6 +35,7 @@
       "PageFrontend\\": "module/PageFrontend/src/",
       "PageBackend\\": "module/PageBackend/src/",
       "PageModel\\": "module/PageModel/src/",
+      "CategoryModel\\": "module/CategoryModel/src/",
       "Scripts\\": "script/"
     }
   },

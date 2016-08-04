@@ -11,8 +11,10 @@ namespace Application;
 
 use Application\Controller\IndexController;
 use Application\Controller\IndexControllerFactory;
+use Application\Controller\TestController;
 use Zend\Navigation\Page\Mvc;
 use Zend\Router\Http\Literal;
+use Zend\ServiceManager\Factory\InvokableFactory;
 
 return [
     'router' => [
@@ -33,6 +35,7 @@ return [
     'controllers' => [
         'factories' => [
             IndexController::class => IndexControllerFactory::class,
+            TestController::class  => InvokableFactory::class,
         ],
     ],
 
