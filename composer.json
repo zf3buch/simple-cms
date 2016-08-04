@@ -29,7 +29,10 @@
     "zendframework/zend-db": "^2.8",
     "ralfeggert/travello-filter": "^1.2",
     "zendframework/zend-inputfilter": "^2.7",
-    "zendframework/zend-form": "^2.9"
+    "zendframework/zend-form": "^2.9",
+    "zendframework/zend-math": "^3.0",
+    "zendframework/zend-session": "^2.7",
+    "zendframework/zend-i18n": "^2.7"
   },
   "require-dev": {
     "zendframework/zend-developer-tools": "^1.1",
