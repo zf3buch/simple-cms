@@ -10,7 +10,6 @@
 
 namespace CategoryBackend\Controller;
 
-use CategoryBackend\Form\CategoryForm;
 use CategoryBackend\Form\CategoryFormInterface;
 use CategoryModel\Repository\CategoryRepositoryInterface;
 use Interop\Container\ContainerInterface;
@@ -43,7 +42,9 @@ class ModifyControllerFactory implements FactoryInterface
         );
 
         /** @var CategoryFormInterface $categoryForm */
-        $categoryForm = $formElementManager->get(CategoryForm::class);
+        $categoryForm = $formElementManager->get(
+            CategoryFormInterface::class
+        );
 
         $controller = new ModifyController();
         $controller->setCategoryRepository($categoryRepository);
