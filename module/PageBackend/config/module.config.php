@@ -12,8 +12,8 @@ use PageBackend\Controller\DisplayController;
 use PageBackend\Controller\DisplayControllerFactory;
 use PageBackend\Controller\ModifyController;
 use PageBackend\Controller\ModifyControllerFactory;
-use PageBackend\Form\PageForm;
 use PageBackend\Form\PageFormFactory;
+use PageBackend\Form\PageFormInterface;
 use Zend\Navigation\Page\Mvc;
 use Zend\Router\Http\Literal;
 use Zend\Router\Http\Segment;
@@ -80,7 +80,8 @@ return [
 
     'view_manager' => [
         'template_map'        =>
-            include PAGE_BACKEND_MODULE_ROOT . '/config/template_map.config.php',
+            include PAGE_BACKEND_MODULE_ROOT
+                . '/config/template_map.config.php',
         'template_path_stack' => [
             PAGE_BACKEND_MODULE_ROOT . '/view'
         ],
@@ -88,35 +89,35 @@ return [
 
     'form_elements' => [
         'factories' => [
-            PageForm::class => PageFormFactory::class,
+            PageFormInterface::class => PageFormFactory::class,
         ],
     ],
 
     'navigation' => [
         'default' => [
             'page-backend' => [
-                'type'       => Mvc::class,
-                'order'      => '900',
-                'label'      => 'Seiten administrieren',
-                'route'      => 'page-backend',
-                'controller' => DisplayController::class,
-                'action'     => 'index',
+                'type'          => Mvc::class,
+                'order'         => '900',
+                'label'         => 'Seiten administrieren',
+                'route'         => 'page-backend',
+                'controller'    => DisplayController::class,
+                'action'        => 'index',
                 'useRouteMatch' => true,
-                'pages'      => [
+                'pages'         => [
                     'edit' => [
-                        'type'       => Mvc::class,
-                        'route'      => 'page-backend/modify',
-                        'visible'    => false,
+                        'type'    => Mvc::class,
+                        'route'   => 'page-backend/modify',
+                        'visible' => false,
                     ],
                     'show' => [
-                        'type'       => Mvc::class,
-                        'route'      => 'page-backend/show',
-                        'visible'    => false,
+                        'type'    => Mvc::class,
+                        'route'   => 'page-backend/show',
+                        'visible' => false,
                     ],
                     'page' => [
-                        'type'       => Mvc::class,
-                        'route'      => 'page-backend/page',
-                        'visible'    => false,
+                        'type'    => Mvc::class,
+                        'route'   => 'page-backend/page',
+                        'visible' => false,
                     ],
                 ],
             ],
