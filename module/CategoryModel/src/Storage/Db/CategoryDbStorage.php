@@ -85,10 +85,28 @@ class CategoryDbStorage implements CategoryStorageInterface
      *
      * @return CategoryEntity
      */
-    public function fetchCategoryEntity($id)
+    public function fetchCategoryEntityById($id)
     {
         $select = $this->tableGateway->getSql()->select();
         $select->where->equalTo('id', $id);
+
+        /** @var ResultSet $resultSet */
+        $resultSet = $this->tableGateway->selectWith($select);
+
+        return $resultSet->current();
+    }
+
+    /**
+     * Fetch an category entity by url from storage
+     *
+     * @param string $url
+     *
+     * @return CategoryEntity
+     */
+    public function fetchCategoryEntityByUrl($url)
+    {
+        $select = $this->tableGateway->getSql()->select();
+        $select->where->equalTo('url', $url);
 
         /** @var ResultSet $resultSet */
         $resultSet = $this->tableGateway->selectWith($select);

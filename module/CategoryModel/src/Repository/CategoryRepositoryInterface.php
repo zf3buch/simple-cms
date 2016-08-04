@@ -33,9 +33,18 @@ interface CategoryRepositoryInterface
     /**
      * Get a single category by id
      *
-     * @param $id
+     * @param int $id
      *
      * @return CategoryEntity|bool
      */
     public function getSingleCategoryById($id);
+
+    /**
+     * Get a single category by url
+     *
+     * @param string $url
+     *
+     * @return CategoryEntity|bool
+     */
+    public function getSingleCategoryByUrl($url);
 }
