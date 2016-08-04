@@ -12,6 +12,7 @@ use PageBackend\Controller\DisplayController;
 use PageBackend\Controller\DisplayControllerFactory;
 use PageBackend\Controller\ModifyController;
 use PageBackend\Controller\ModifyControllerFactory;
+use Zend\Navigation\Page\Mvc;
 use Zend\Router\Http\Literal;
 use Zend\Router\Http\Segment;
 
@@ -80,6 +81,37 @@ return [
             include PAGE_BACKEND_MODULE_ROOT . '/config/template_map.config.php',
         'template_path_stack' => [
             PAGE_BACKEND_MODULE_ROOT . '/view'
+        ],
+    ],
+
+    'navigation' => [
+        'default' => [
+            'page-backend' => [
+                'type'       => Mvc::class,
+                'order'      => '900',
+                'label'      => 'Seiten administrieren',
+                'route'      => 'page-backend',
+                'controller' => DisplayController::class,
+                'action'     => 'index',
+                'useRouteMatch' => true,
+                'pages'      => [
+                    'edit' => [
+                        'type'       => Mvc::class,
+                        'route'      => 'page-backend/modify',
+                        'visible'    => false,
+                    ],
+                    'show' => [
+                        'type'       => Mvc::class,
+                        'route'      => 'page-backend/show',
+                        'visible'    => false,
+                    ],
+                    'page' => [
+                        'type'       => Mvc::class,
+                        'route'      => 'page-backend/page',
+                        'visible'    => false,
+                    ],
+                ],
+            ],
         ],
     ],
 ];

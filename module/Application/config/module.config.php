@@ -11,6 +11,7 @@ namespace Application;
 
 use Application\Controller\IndexController;
 use Application\Controller\IndexControllerFactory;
+use Zend\Navigation\Page\Mvc;
 use Zend\Router\Http\Literal;
 
 return [
@@ -46,6 +47,20 @@ return [
                 . '/config/template_map.config.php',
         'template_path_stack'      => [
             APPLICATION_MODULE_ROOT . '/view',
+        ],
+    ],
+
+    'navigation' => [
+        'default' => [
+            'application' => [
+                'type'          => Mvc::class,
+                'order'         => '100',
+                'label'         => 'Startseite',
+                'route'         => 'home',
+                'controller'    => IndexController::class,
+                'action'        => 'index',
+                'useRouteMatch' => true,
+            ],
         ],
     ],
 ];

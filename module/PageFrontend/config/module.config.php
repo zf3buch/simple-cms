@@ -10,6 +10,7 @@
 
 use PageFrontend\Controller\DisplayController;
 use PageFrontend\Controller\DisplayControllerFactory;
+use Zend\Navigation\Page\Mvc;
 use Zend\Router\Http\Segment;
 
 return [
@@ -55,6 +56,27 @@ return [
             include PAGE_FRONTEND_MODULE_ROOT . '/config/template_map.config.php',
         'template_path_stack' => [
             PAGE_FRONTEND_MODULE_ROOT . '/view'
+        ],
+    ],
+
+    'navigation' => [
+        'default' => [
+            'category'     => [
+                'type'          => Mvc::class,
+                'order'         => '200',
+                'label'         => 'Seiten',
+                'route'         => 'category',
+                'controller'    => DisplayController::class,
+                'action'        => 'category',
+                'useRouteMatch' => true,
+                'pages'         => [
+                    'page' => [
+                        'type'    => Mvc::class,
+                        'route'   => 'page',
+                        'visible' => false,
+                    ],
+                ],
+            ],
         ],
     ],
 ];

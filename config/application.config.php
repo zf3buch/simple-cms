@@ -9,6 +9,7 @@
 
 return [
     'modules' => [
+        'Zend\Navigation',
         'Zend\Paginator',
         'Zend\Session',
         'Zend\Router',
