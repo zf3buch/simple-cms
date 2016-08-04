@@ -12,7 +12,6 @@ namespace Application\Controller;
 
 use CategoryModel\Entity\CategoryEntity;
 use CategoryModel\Hydrator\CategoryHydrator;
-use DateTime;
 use PageModel\Entity\PageEntity;
 use PageModel\Hydrator\PageHydrator;
 use Zend\Mvc\Controller\AbstractActionController;
@@ -33,7 +32,7 @@ class TestController extends AbstractActionController
     {
         $categoryData = [
             'id'          => '123',
-            'updated'     => new DateTime(),
+            'updated'     => date('Y-m-d H:i:s'),
             'status'      => 'approved',
             'name'        => 'Name',
             'url'         => 'Url',
@@ -48,8 +47,8 @@ class TestController extends AbstractActionController
 
         $pageData = [
             'id'       => '123',
-            'created'  => new DateTime(),
-            'updated'  => new DateTime(),
+            'created'  => date('Y-m-d H:i:s'),
+            'updated'  => date('Y-m-d H:i:s'),
             'status'   => 'approved',
             'category' => $categoryEntity,
             'title'    => 'Title',

@@ -12,6 +12,7 @@ namespace CategoryModel\Hydrator;
 
 use Zend\Hydrator\ClassMethods;
 use Zend\Hydrator\HydratorInterface;
+use Zend\Hydrator\Strategy\DateTimeFormatterStrategy;
 
 /**
  * Class CategoryHydrator
@@ -20,4 +21,16 @@ use Zend\Hydrator\HydratorInterface;
  */
 class CategoryHydrator extends ClassMethods implements HydratorInterface
 {
+    /**
+     * CategoryHydrator constructor.
+     */
+    public function __construct()
+    {
+        parent::__construct();
+
+        $this->addStrategy(
+            'updated',
+            new DateTimeFormatterStrategy('Y-m-d H:i:s')
+        );
+    }
 }
