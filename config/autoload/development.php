@@ -8,4 +8,10 @@
  */
 
 return [
+    'db' => [
+        'driver' => 'pdo',
+        'dsn'    => 'mysql:dbname=simple-cms;host=localhost;charset=utf8',
+        'user'   => 'simple-cms',
+        'pass'   => 'geheim',
+    ],
 ];
