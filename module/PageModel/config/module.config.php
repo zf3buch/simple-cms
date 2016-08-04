@@ -20,8 +20,7 @@ return [
         'factories' => [
             PageDbStorage::class => PageDbStorageFactory::class,
 
-            PageRepositoryInterface::class =>
-                PageRepositoryFactory::class
+            PageRepositoryInterface::class => PageRepositoryFactory::class,
         ],
     ],
 

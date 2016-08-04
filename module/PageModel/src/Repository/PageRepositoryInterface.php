@@ -10,6 +10,7 @@
 
 namespace PageModel\Repository;
 
+use PageModel\Entity\PageEntity;
 use Zend\Paginator\Paginator;
 
 /**
@@ -35,7 +36,7 @@ interface PageRepositoryInterface
      * @param string $url
      * @param bool   $approved
      *
-     * @return mixed
+     * @return Paginator
      */
     public function getPagesByCategory($url, $approved = true);
 
@@ -44,7 +45,7 @@ interface PageRepositoryInterface
      *
      * @param $id
      *
-     * @return array|bool
+     * @return PageEntity|bool
      */
     public function getSinglePageById($id);
 
@@ -53,7 +54,7 @@ interface PageRepositoryInterface
      *
      * @param $url
      *
-     * @return array|bool
+     * @return PageEntity|bool
      */
     public function getSinglePageByUrl($url);
 
@@ -62,7 +63,7 @@ interface PageRepositoryInterface
      *
      * @param integer $count
      *
-     * @return array|bool
+     * @return Paginator
      */
     public function getRandomPages($count = 4);
 }

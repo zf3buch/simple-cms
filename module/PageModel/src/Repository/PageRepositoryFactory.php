@@ -11,6 +11,7 @@
 namespace PageModel\Repository;
 
 use Interop\Container\ContainerInterface;
+use PageModel\Storage\Db\PageDbStorage;
 use Zend\ServiceManager\Factory\FactoryInterface;
 
 /**
@@ -25,9 +26,8 @@ class PageRepositoryFactory implements FactoryInterface
         $requestedName,
         array $options = null
     ) {
-        $pageData     = include PROJECT_ROOT . '/data/page-data.php';
-        $categoryData = include PROJECT_ROOT . '/data/category-data.php';
+        $pageDbStorage = $container->get(PageDbStorage::class);
 
-        return new PageRepository($pageData, $categoryData);
+        return new PageRepository($pageDbStorage);
     }
 }
