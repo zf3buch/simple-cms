@@ -8,13 +8,16 @@
  *
  */
 
-use CategoryModel\Hydrator\CategoryHydrator;
-use Zend\ServiceManager\Factory\InvokableFactory;
+namespace PageModel\Hydrator;
 
-return [
-    'hydrators' => [
-        'factories' => [
-            CategoryHydrator::class => InvokableFactory::class,
-        ],
-    ],
-];
+use Zend\Hydrator\ClassMethods;
+use Zend\Hydrator\HydratorInterface;
+
+/**
+ * Class PageHydrator
+ *
+ * @package PageModel\Hydrator
+ */
+class PageHydrator extends ClassMethods implements HydratorInterface
+{
+}

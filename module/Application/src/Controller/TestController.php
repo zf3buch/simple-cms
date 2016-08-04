@@ -11,8 +11,10 @@
 namespace Application\Controller;
 
 use CategoryModel\Entity\CategoryEntity;
+use CategoryModel\Hydrator\CategoryHydrator;
 use DateTime;
 use PageModel\Entity\PageEntity;
+use PageModel\Hydrator\PageHydrator;
 use Zend\Mvc\Controller\AbstractActionController;
 
 /**
@@ -29,28 +31,43 @@ class TestController extends AbstractActionController
      */
     public function indexAction()
     {
+        $categoryData = [
+            'id'          => '123',
+            'updated'     => new DateTime(),
+            'status'      => 'approved',
+            'name'        => 'Name',
+            'url'         => 'Url',
+            'description' => 'Description',
+            'image'       => 'Image',
+        ];
+
         $categoryEntity = new CategoryEntity();
-        $categoryEntity->setId('123');
-        $categoryEntity->setUpdated(new DateTime());
-        $categoryEntity->setStatus('approved');
-        $categoryEntity->setName('Name');
-        $categoryEntity->setUrl('url');
-        $categoryEntity->setDescription('Description');
-        $categoryEntity->setImage('Image');
+
+        $categoryHydrator = new CategoryHydrator();
+        $categoryHydrator->hydrate($categoryData, $categoryEntity);
+
+        $pageData = [
+            'id'       => '123',
+            'created'  => new DateTime(),
+            'updated'  => new DateTime(),
+            'status'   => 'approved',
+            'category' => $categoryEntity,
+            'title'    => 'Title',
+            'url'      => 'Url',
+            'text'     => 'Text',
+            'author'   => 'Author',
+        ];
 
         $pageEntity = new PageEntity();
-        $pageEntity->setId('123');
-        $pageEntity->setCreated(new DateTime());
-        $pageEntity->setUpdated(new DateTime());
-        $pageEntity->setStatus('approved');
-        $pageEntity->setCategory($categoryEntity);
-        $pageEntity->setTitle('Title');
-        $pageEntity->setUrl('Url');
-        $pageEntity->setText('Text');
-        $pageEntity->setAuthor('Author');
+
+        $pageHydrator = new PageHydrator();
+        $pageHydrator->hydrate($pageData, $pageEntity);
 
         var_dump($categoryEntity);
         var_dump($pageEntity);
+
+        var_dump($categoryHydrator->extract($categoryEntity));
+        var_dump($pageHydrator->extract($pageEntity));
         exit;
     }
 }

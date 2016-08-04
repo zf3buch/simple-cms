@@ -8,11 +8,20 @@
  *
  */
 
+use PageModel\Hydrator\PageHydrator;
+use Zend\ServiceManager\Factory\InvokableFactory;
+
 return [
     'service_manager' => [
         'factories' => [
             PageModel\Repository\PageRepositoryInterface::class =>
                 PageModel\Repository\PageRepositoryFactory::class
+        ],
+    ],
+
+    'hydrators' => [
+        'factories' => [
+            PageHydrator::class => InvokableFactory::class,
         ],
     ],
 ];
