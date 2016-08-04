@@ -11,14 +11,14 @@
 use PageModel\Hydrator\PageHydrator;
 use PageModel\Repository\PageRepositoryFactory;
 use PageModel\Repository\PageRepositoryInterface;
-use PageModel\Storage\Db\PageDbStorage;
 use PageModel\Storage\Db\PageDbStorageFactory;
+use PageModel\Storage\PageStorageInterface;
 use Zend\ServiceManager\Factory\InvokableFactory;
 
 return [
     'service_manager' => [
         'factories' => [
-            PageDbStorage::class => PageDbStorageFactory::class,
+            PageStorageInterface::class => PageDbStorageFactory::class,
 
             PageRepositoryInterface::class => PageRepositoryFactory::class,
         ],
