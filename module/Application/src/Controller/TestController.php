@@ -30,31 +30,23 @@ class TestController extends AbstractActionController
      */
     public function indexAction()
     {
-        $categoryData = [
-            'id'          => '123',
-            'updated'     => date('Y-m-d H:i:s'),
-            'status'      => 'approved',
-            'name'        => 'Name',
-            'url'         => 'Url',
-            'description' => 'Description',
-            'image'       => 'Image',
-        ];
-
-        $categoryEntity = new CategoryEntity();
-
-        $categoryHydrator = new CategoryHydrator();
-        $categoryHydrator->hydrate($categoryData, $categoryEntity);
-
         $pageData = [
-            'id'       => '123',
-            'created'  => date('Y-m-d H:i:s'),
-            'updated'  => date('Y-m-d H:i:s'),
-            'status'   => 'approved',
-            'category' => $categoryEntity,
-            'title'    => 'Title',
-            'url'      => 'Url',
-            'text'     => 'Text',
-            'author'   => 'Author',
+            'id'                   => '123',
+            'created'              => date('Y-m-d H:i:s'),
+            'updated'              => date('Y-m-d H:i:s'),
+            'status'               => 'approved',
+            'category'             => '123',
+            'title'                => 'Title',
+            'url'                  => 'Url',
+            'text'                 => 'Text',
+            'author'               => 'Author',
+            'category_id'          => '123',
+            'category_updated'     => date('Y-m-d H:i:s'),
+            'category_status'      => 'approved',
+            'category_name'        => 'Name',
+            'category_url'         => 'Url',
+            'category_description' => 'Description',
+            'category_image'       => 'Image',
         ];
 
         $pageEntity = new PageEntity();
@@ -62,10 +54,7 @@ class TestController extends AbstractActionController
         $pageHydrator = new PageHydrator();
         $pageHydrator->hydrate($pageData, $pageEntity);
 
-        var_dump($categoryEntity);
         var_dump($pageEntity);
-
-        var_dump($categoryHydrator->extract($categoryEntity));
         var_dump($pageHydrator->extract($pageEntity));
         exit;
     }

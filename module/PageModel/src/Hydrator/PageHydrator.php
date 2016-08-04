@@ -10,6 +10,8 @@
 
 namespace PageModel\Hydrator;
 
+use CategoryModel\Hydrator\CategoryHydrator;
+use CategoryModel\Hydrator\Strategy\CategoryEntityStrategy;
 use Zend\Hydrator\ClassMethods;
 use Zend\Hydrator\HydratorInterface;
 use Zend\Hydrator\Strategy\DateTimeFormatterStrategy;
@@ -35,6 +37,10 @@ class PageHydrator extends ClassMethods implements HydratorInterface
         $this->addStrategy(
             'updated',
             new DateTimeFormatterStrategy('Y-m-d H:i:s')
+        );
+        $this->addStrategy(
+            'category',
+            new CategoryEntityStrategy(new CategoryHydrator())
         );
     }
 }
