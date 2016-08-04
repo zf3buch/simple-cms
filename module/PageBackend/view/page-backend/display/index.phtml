@@ -1,0 +1,91 @@
+<?php
+/**
+ * ZF3 book Simple CMS Training Application
+ *
+ * @author     Ralf Eggert <ralf@travello.de>
+ * @link       https://github.com/zf3buch/simple-cms
+ * @license    http://opensource.org/licenses/MIT The MIT License (MIT)
+ *
+ */
+
+$addLink = $this->url(
+    'page-backend/modify', ['action' => 'add'], true
+);
+
+$this->headTitle('Seiten administrieren');
+?>
+<div class="page-header">
+  <h1>Seiten administrieren</h1>
+</div>
+
+<table class="table table-condensed table-bordered table-striped">
+  <thead>
+  <tr>
+    <th>Kategorie</th>
+    <th>Status</th>
+    <th>Titel</th>
+    <th class="hidden-xs">Autor</th>
+    <th class="text-center">
+      <a href="<?= $addLink ?>"><i class="fa fa-plus-square-o"></i></a>
+    </th>
+  </tr>
+  </thead>
+  <tbody>
+  <?php foreach ($this->pageList as $page) : ?>
+    <?php
+    $showLink    = $this->url(
+        'page-backend/show', ['id' => $page['id']], true
+    );
+    $editLink    = $this->url(
+        'page-backend/modify',
+        ['action' => 'edit', 'id' => $page['id']], true
+    );
+    $deleteLink  = $this->url(
+        'page-backend/modify',
+        ['action' => 'delete', 'id' => $page['id']], true
+    );
+    $approveLink = $this->url(
+        'page-backend/modify',
+        ['action' => 'approve', 'id' => $page['id']], true
+    );
+    $blockLink   = $this->url(
+        'page-backend/modify',
+        ['action' => 'block', 'id' => $page['id']], true
+    );
+    ?>
+    <tr>
+      <td>
+        <?= $page['category']['name'] ?>
+      </td>
+      <td>
+        <?= $page['status'] ?>
+      </td>
+      <td>
+        <a href="<?= $showLink ?>">
+          <?= $page['title'] ?>
+        </a>
+      </td>
+      <td class="hidden-xs">
+        <?= $page['author'] ?>
+      </td>
+      <td class="text-center">
+        <a href="<?= $showLink ?>" class="hidden-xs hidden-sm">
+          <i class="fa fa-file-text-o"></i>
+        </a>
+        <a href="<?= $editLink ?>">
+          <i class="fa fa-pencil"></i>
+        </a>
+        <a href="<?= $deleteLink ?>" class="hidden-xs hidden-sm">
+          <i class="fa fa-trash-o"></i>
+        </a>
+        <a href="<?= $approveLink ?>" class="visible-lg-inline">
+          <i class="fa fa-thumbs-o-up"></i>
+        </a>
+        <a href="<?= $blockLink ?>" class="visible-lg-inline">
+          <i class="fa fa-thumbs-o-down"></i>
+        </a>
+      </td>
+    </tr>
+  <?php endforeach; ?>
+  </tbody>
+</table>

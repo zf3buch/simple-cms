@@ -1,0 +1,64 @@
+<?php
+/**
+ * ZF3 book Simple CMS Training Application
+ *
+ * @author     Ralf Eggert <ralf@travello.de>
+ * @link       https://github.com/zf3buch/simple-cms
+ * @license    http://opensource.org/licenses/MIT The MIT License (MIT)
+ *
+ */
+
+$page = $this->page;
+
+$listLink = $this->url(
+    'category', ['url' => $page['category']['url']], true
+);
+$listText = 'Zurück zur Kategorie ' . $page['category']['name'];
+
+$this->headTitle($page['title']);
+?>
+<div class="page-header">
+  <h1><?= $page['title'] ?></h1>
+</div>
+
+<p class="text-center">
+  <a class="btn btn-default" href="<?= $listLink; ?>">
+    <i class="fa fa-arrow-circle-left"></i> <?= $listText; ?>
+  </a>
+</p>
+<div class="panel panel-primary">
+  <div class="panel-heading clearfix">
+    <div class="left-text">
+      <strong><?= $page['title']; ?></strong>
+    </div>
+    <div class="right-text">
+      Autor: <?= $page['author']; ?>
+    </div>
+  </div>
+  <div class="panel-body">
+    <div class="col-sm-9">
+      <p><?= $page['text']; ?></p>
+    </div>
+    <div class="col-sm-3 category">
+      <p>
+        <a href="<?= $listLink ?>">
+          <img class="img-responsive" src="<?= $page['category']['image'] ?>">
+        </a>
+      </p>
+      <h5><strong>Kategorie: <?= $page['category']['name'] ?></strong></h5>
+      <p><?= $page['category']['description'] ?></p>
+    </div>
+  </div>
+  <div class="panel-footer clearfix">
+    <div class="text-center">
+      <div class="label label-primary">
+        Letzte Änderung: <?= $page['updated'] ?>
+      </div>
+    </div>
+  </div>
+</div>
+<p class="text-center">
+  <a class="btn btn-default" href="<?= $listLink; ?>">
+    <i class="fa fa-arrow-circle-left"></i> <?= $listText; ?>
+  </a>
+</p>

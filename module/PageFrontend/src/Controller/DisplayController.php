@@ -47,8 +47,11 @@ class DisplayController extends AbstractActionController
             return $this->redirect()->toRoute('home', [], true);
         }
 
-        var_dump($pageList);
-        exit;
+        $viewModel = new ViewModel();
+        $viewModel->setVariable('pageList', $pageList);
+        $viewModel->setVariable('category', $pageList[key($pageList)]['category']);
+
+        return $viewModel;
     }
 
     /**
@@ -68,7 +71,9 @@ class DisplayController extends AbstractActionController
             return $this->redirect()->toRoute('home', [], true);
         }
 
-        var_dump($page);
-        exit;
+        $viewModel = new ViewModel();
+        $viewModel->setVariable('page', $page);
+
+        return $viewModel;
     }
 }

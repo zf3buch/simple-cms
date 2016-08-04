@@ -49,7 +49,20 @@ class ModifyController extends AbstractActionController
      */
     public function editAction()
     {
+        $id = $this->params()->fromRoute('id');
+
+        if (!$id) {
+            return $this->redirect()->toRoute('page-backend', [], true);
+        }
+
+        $page = $this->pageRepository->getSinglePageById($id);
+
+        if (!$page) {
+            return $this->redirect()->toRoute('page-backend', [], true);
+        }
+
         $viewModel = new ViewModel();
+        $viewModel->setVariable('page', $page);
 
         return $viewModel;
     }
@@ -59,7 +72,20 @@ class ModifyController extends AbstractActionController
      */
     public function deleteAction()
     {
+        $id = $this->params()->fromRoute('id');
+
+        if (!$id) {
+            return $this->redirect()->toRoute('page-backend', [], true);
+        }
+
+        $page = $this->pageRepository->getSinglePageById($id);
+
+        if (!$page) {
+            return $this->redirect()->toRoute('page-backend', [], true);
+        }
+
         $viewModel = new ViewModel();
+        $viewModel->setVariable('page', $page);
 
         return $viewModel;
     }
@@ -69,7 +95,20 @@ class ModifyController extends AbstractActionController
      */
     public function approveAction()
     {
+        $id = $this->params()->fromRoute('id');
+
+        if (!$id) {
+            return $this->redirect()->toRoute('page-backend', [], true);
+        }
+
+        $page = $this->pageRepository->getSinglePageById($id);
+
+        if (!$page) {
+            return $this->redirect()->toRoute('page-backend', [], true);
+        }
+
         $viewModel = new ViewModel();
+        $viewModel->setVariable('page', $page);
 
         return $viewModel;
     }
@@ -79,7 +118,20 @@ class ModifyController extends AbstractActionController
      */
     public function blockAction()
     {
+        $id = $this->params()->fromRoute('id');
+
+        if (!$id) {
+            return $this->redirect()->toRoute('page-backend', [], true);
+        }
+
+        $page = $this->pageRepository->getSinglePageById($id);
+
+        if (!$page) {
+            return $this->redirect()->toRoute('page-backend', [], true);
+        }
+
         $viewModel = new ViewModel();
+        $viewModel->setVariable('page', $page);
 
         return $viewModel;
     }

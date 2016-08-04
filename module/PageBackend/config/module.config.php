@@ -74,4 +74,12 @@ return [
             ModifyController::class  => ModifyControllerFactory::class,
         ],
     ],
+
+    'view_manager' => [
+        'template_map'        =>
+            include PAGE_BACKEND_MODULE_ROOT . '/config/template_map.config.php',
+        'template_path_stack' => [
+            PAGE_BACKEND_MODULE_ROOT . '/view'
+        ],
+    ],
 ];

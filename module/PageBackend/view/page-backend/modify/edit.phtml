@@ -1,0 +1,64 @@
+<?php
+/**
+ * ZF3 book Simple CMS Training Application
+ *
+ * @author     Ralf Eggert <ralf@travello.de>
+ * @link       https://github.com/zf3buch/simple-cms
+ * @license    http://opensource.org/licenses/MIT The MIT License (MIT)
+ *
+ */
+
+$page = $this->page;
+
+$listLink    = $this->url('page-backend', [], true);
+$showLink    = $this->url(
+    'page-backend/show', ['id' => $page['id']], true
+);
+$editLink    = $this->url(
+    'page-backend/modify', ['action' => 'edit', 'id' => $page['id']], true
+);
+$deleteLink  = $this->url(
+    'page-backend/modify', ['action' => 'delete', 'id' => $page['id']], true
+);
+$approveLink = $this->url(
+    'page-backend/modify', ['action' => 'approve', 'id' => $page['id']], true
+);
+$blockLink   = $this->url(
+    'page-backend/modify', ['action' => 'block', 'id' => $page['id']], true
+);
+
+$this->headTitle('Seite bearbeiten');
+?>
+<div class="page-header">
+  <h1>Seite bearbeiten</h1>
+</div>
+
+<p>
+  <a href="<?= $showLink ?>" class="btn btn-default">
+    <i class="fa fa-file-text-o"></i>
+    <span class="hidden-xs hidden-sm">Anzeigen</span>
+  </a>
+  <a href="<?= $editLink ?>" class="btn btn-primary">
+    <i class="fa fa-pencil"></i>
+    <span class="hidden-xs hidden-sm">Bearbeiten</span>
+  </a>
+  <a href="<?= $deleteLink ?>" class="btn btn-default">
+    <i class="fa fa-trash-o"></i>
+    <span class="hidden-xs hidden-sm">Löschen</span>
+  </a>
+  <a href="<?= $approveLink ?>" class="btn btn-default">
+    <i class="fa fa-thumbs-o-up"></i>
+    <span class="hidden-xs hidden-sm">Freigeben</span>
+  </a>
+  <a href="<?= $blockLink ?>" class="btn btn-default">
+    <i class="fa fa-thumbs-o-down"></i>
+    <span class="hidden-xs hidden-sm">Sperren</span>
+  </a>
+  <a href="<?= $listLink ?>" class="btn btn-default">
+    <i class="fa fa-list"></i>
+    <span class="hidden-xs hidden-sm">Übersicht</span>
+  </a>
+</p>
+<div class="well">
+  In Kürze mehr...
+</div>

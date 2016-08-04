@@ -49,4 +49,12 @@ return [
             DisplayController::class => DisplayControllerFactory::class,
         ],
     ],
+
+    'view_manager' => [
+        'template_map'        =>
+            include PAGE_FRONTEND_MODULE_ROOT . '/config/template_map.config.php',
+        'template_path_stack' => [
+            PAGE_FRONTEND_MODULE_ROOT . '/view'
+        ],
+    ],
 ];
