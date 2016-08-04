@@ -23,7 +23,47 @@ class ModifyController extends AbstractActionController
     /**
      * @return ViewModel
      */
-    public function indexAction()
+    public function addAction()
+    {
+        $viewModel = new ViewModel();
+
+        return $viewModel;
+    }
+
+    /**
+     * @return ViewModel
+     */
+    public function editAction()
+    {
+        $viewModel = new ViewModel();
+
+        return $viewModel;
+    }
+
+    /**
+     * @return ViewModel
+     */
+    public function deleteAction()
+    {
+        $viewModel = new ViewModel();
+
+        return $viewModel;
+    }
+
+    /**
+     * @return ViewModel
+     */
+    public function approveAction()
+    {
+        $viewModel = new ViewModel();
+
+        return $viewModel;
+    }
+
+    /**
+     * @return ViewModel
+     */
+    public function blockAction()
     {
         $viewModel = new ViewModel();
 

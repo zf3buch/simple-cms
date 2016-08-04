@@ -12,6 +12,7 @@ use PageBackend\Controller\DisplayController;
 use PageBackend\Controller\ModifyController;
 use Zend\Router\Http\Literal;
 use Zend\Router\Http\Segment;
+use Zend\ServiceManager\Factory\InvokableFactory;
 
 return [
     'router' => [
@@ -40,7 +41,7 @@ return [
                             ],
                         ],
                     ],
-                    'show' => [
+                    'show'   => [
                         'type'    => Segment::class,
                         'options' => [
                             'route'       => '/show[/:id]',
@@ -48,11 +49,11 @@ return [
                                 'action' => 'show',
                             ],
                             'constraints' => [
-                                'id'     => '[1-9][0-9]*',
+                                'id' => '[1-9][0-9]*',
                             ],
                         ],
                     ],
-                    'page' => [
+                    'page'   => [
                         'type'    => Segment::class,
                         'options' => [
                             'route'       => '/:page',
@@ -63,6 +64,13 @@ return [
                     ],
                 ],
             ],
+        ],
+    ],
+
+    'controllers' => [
+        'factories' => [
+            DisplayController::class => InvokableFactory::class,
+            ModifyController::class  => InvokableFactory::class,
         ],
     ],
 ];

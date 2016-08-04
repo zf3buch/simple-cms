@@ -29,4 +29,14 @@ class DisplayController extends AbstractActionController
 
         return $viewModel;
     }
+
+    /**
+     * @return ViewModel
+     */
+    public function showAction()
+    {
+        $viewModel = new ViewModel();
+
+        return $viewModel;
+    }
 }

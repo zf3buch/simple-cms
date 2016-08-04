@@ -23,7 +23,17 @@ class DisplayController extends AbstractActionController
     /**
      * @return ViewModel
      */
-    public function indexAction()
+    public function categoryAction()
+    {
+        $viewModel = new ViewModel();
+
+        return $viewModel;
+    }
+
+    /**
+     * @return ViewModel
+     */
+    public function pageAction()
     {
         $viewModel = new ViewModel();
 

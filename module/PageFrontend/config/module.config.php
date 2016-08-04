@@ -10,6 +10,7 @@
 
 use PageFrontend\Controller\DisplayController;
 use Zend\Router\Http\Segment;
+use Zend\ServiceManager\Factory\InvokableFactory;
 
 return [
     'router' => [
@@ -40,6 +41,12 @@ return [
                     ],
                 ],
             ],
+        ],
+    ],
+
+    'controllers' => [
+        'factories' => [
+            DisplayController::class => InvokableFactory::class,
         ],
     ],
 ];
