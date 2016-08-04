@@ -57,7 +57,7 @@ class DisplayController extends AbstractActionController
 
         $pageList = $this->pageRepository->getPagesByCategory($url);
 
-        if (!$pageList) {
+        if ($pageList->count() == 0) {
             return $this->redirect()->toRoute('home', [], true);
         }
 

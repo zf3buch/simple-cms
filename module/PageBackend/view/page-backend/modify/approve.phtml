@@ -8,23 +8,26 @@
  *
  */
 
+use PageModel\Entity\PageEntity;
+
+/** @var PageEntity $page */
 $page = $this->page;
 
 $listLink    = $this->url('page-backend', [], true);
 $showLink    = $this->url(
-    'page-backend/show', ['id' => $page['id']], true
+    'page-backend/show', ['id' => $page->getId()], true
 );
 $editLink    = $this->url(
-    'page-backend/modify', ['action' => 'edit', 'id' => $page['id']], true
+    'page-backend/modify', ['action' => 'edit', 'id' => $page->getId()], true
 );
 $deleteLink  = $this->url(
-    'page-backend/modify', ['action' => 'delete', 'id' => $page['id']], true
+    'page-backend/modify', ['action' => 'delete', 'id' => $page->getId()], true
 );
 $approveLink = $this->url(
-    'page-backend/modify', ['action' => 'approve', 'id' => $page['id']], true
+    'page-backend/modify', ['action' => 'approve', 'id' => $page->getId()], true
 );
 $blockLink   = $this->url(
-    'page-backend/modify', ['action' => 'block', 'id' => $page['id']], true
+    'page-backend/modify', ['action' => 'block', 'id' => $page->getId()], true
 );
 
 $this->headTitle('Seite freigeben');

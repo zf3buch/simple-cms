@@ -43,7 +43,7 @@ class DisplayController extends AbstractActionController
 
         $pageList = $this->pageRepository->getPagesByPage($page, 15);
 
-        if (!$pageList) {
+        if ($pageList->count() == 0) {
             return $this->redirect()->toRoute('page-backend', [], true);
         }
 
