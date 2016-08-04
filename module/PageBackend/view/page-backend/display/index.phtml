@@ -89,3 +89,16 @@ $this->headTitle('Seiten administrieren');
   <?php endforeach; ?>
   </tbody>
 </table>
+
+<nav class="text-center">
+  <?php
+  echo $this->paginationControl(
+      $this->pageList,
+      'Sliding',
+      'pagination/page-navigation',
+      [
+          'route' => 'page-backend/page'
+      ]
+  );
+  ?>
+</nav>

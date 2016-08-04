@@ -10,6 +10,9 @@
 
 namespace PageModel\Repository;
 
+use Zend\Paginator\Adapter\ArrayAdapter;
+use Zend\Paginator\Paginator;
+
 /**
  * Class PageRepository
  *
@@ -45,23 +48,29 @@ class PageRepository implements PageRepositoryInterface
      * @param int $page
      * @param int $count
      *
-     * @return mixed
+     * @return Paginator
      */
     public function getPagesByPage($page = 1, $count = 5)
     {
         $pageList = $this->pageData;
 
-        $offset = ($page - 1) * $count;
+        $paginator = new Paginator(
+            new ArrayAdapter($pageList)
+        );
+        $paginator->setCurrentPageNumber($page);
+        $paginator->setItemCountPerPage($count);
 
-        $pageList = array_slice($pageList, $offset, $count, true);
+        /** @var \ArrayIterator $currentItemsIterator */
+        $currentItemsIterator = $paginator->getCurrentItems();
 
-        foreach ($pageList as $key => $page) {
+        foreach ($currentItemsIterator as $key => $page) {
             $category = $this->categoryData[$page['category']];
+            $page['category'] = $category;
 
-            $pageList[$key]['category'] = $category;
+            $currentItemsIterator->offsetSet($key, $page);
         }
 
-        return $pageList;
+        return $paginator;
     }
 
     /**

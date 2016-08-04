@@ -9,6 +9,7 @@
 
 return [
     'modules' => [
+        'Zend\Paginator',
         'Zend\Session',
         'Zend\Router',
         'Zend\Validator',

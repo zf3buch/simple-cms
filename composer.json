@@ -21,7 +21,8 @@
     "zendframework/zend-mvc": "^3.0",
     "twitter/bootstrap": "~3.3",
     "fortawesome/font-awesome": "~4.4",
-    "frameworks/jquery": "~1.11"
+    "frameworks/jquery": "~1.11",
+    "zendframework/zend-paginator": "^2.7"
   },
   "require-dev": {
     "zendframework/zend-developer-tools": "^1.1",

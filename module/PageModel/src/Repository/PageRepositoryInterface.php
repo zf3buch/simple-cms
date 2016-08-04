@@ -10,6 +10,8 @@
 
 namespace PageModel\Repository;
 
+use Zend\Paginator\Paginator;
+
 /**
  * Interface PageRepositoryInterface
  *
@@ -23,7 +25,7 @@ interface PageRepositoryInterface
      * @param int         $page
      * @param int         $count
      *
-     * @return mixed
+     * @return Paginator
      */
     public function getPagesByPage($page = 1, $count = 5);
 
