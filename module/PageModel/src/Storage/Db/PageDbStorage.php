@@ -132,7 +132,9 @@ class PageDbStorage implements PageStorageInterface
         );
 
         $paginator = new Paginator($dbSelectAdapter);
-
+        $paginator->setCurrentPageNumber(1);
+        $paginator->setItemCountPerPage($count);
+        
         return $paginator;
     }
 
