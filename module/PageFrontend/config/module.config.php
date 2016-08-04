@@ -9,24 +9,44 @@
  */
 
 use PageFrontend\Controller\DisplayController;
+use PageFrontend\Controller\DisplayControllerFactory;
 use Zend\Router\Http\Segment;
 
 return [
     'router' => [
         'routes' => [
-            'page-frontend' => [
+            'category' => [
                 'type'    => Segment::class,
                 'options' => [
-                    'route'    => '/page[/:url]',
-                    'defaults' => [
+                    'route'       => '/category/:url',
+                    'defaults'    => [
                         'controller' => DisplayController::class,
-                        'action'     => 'index',
+                        'action'     => 'category',
                     ],
                     'constraints' => [
-                        'url'     => '[a-z1-9-]*',
+                        'url' => '[a-z1-9-]*',
                     ],
                 ],
             ],
+            'page'     => [
+                'type'    => Segment::class,
+                'options' => [
+                    'route'       => '/page/:url',
+                    'defaults'    => [
+                        'controller' => DisplayController::class,
+                        'action'     => 'page',
+                    ],
+                    'constraints' => [
+                        'url' => '[a-z1-9-]*',
+                    ],
+                ],
+            ],
+        ],
+    ],
+
+    'controllers' => [
+        'factories' => [
+            DisplayController::class => DisplayControllerFactory::class,
         ],
     ],
 ];

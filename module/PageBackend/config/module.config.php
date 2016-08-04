@@ -9,7 +9,9 @@
  */
 
 use PageBackend\Controller\DisplayController;
+use PageBackend\Controller\DisplayControllerFactory;
 use PageBackend\Controller\ModifyController;
+use PageBackend\Controller\ModifyControllerFactory;
 use Zend\Router\Http\Literal;
 use Zend\Router\Http\Segment;
 
@@ -63,6 +65,13 @@ return [
                     ],
                 ],
             ],
+        ],
+    ],
+
+    'controllers' => [
+        'factories' => [
+            DisplayController::class => DisplayControllerFactory::class,
+            ModifyController::class  => ModifyControllerFactory::class,
         ],
     ],
 ];

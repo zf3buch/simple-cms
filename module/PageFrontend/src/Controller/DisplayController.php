@@ -10,6 +10,7 @@
 
 namespace PageFrontend\Controller;
 
+use PageModel\Repository\PageRepositoryInterface;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 
@@ -21,12 +22,53 @@ use Zend\View\Model\ViewModel;
 class DisplayController extends AbstractActionController
 {
     /**
+     * @var PageRepositoryInterface
+     */
+    private $pageRepository;
+
+    /**
+     * @param PageRepositoryInterface $pageRepository
+     */
+    public function setPageRepository($pageRepository)
+    {
+        $this->pageRepository = $pageRepository;
+    }
+
+    /**
      * @return ViewModel
      */
-    public function indexAction()
+    public function categoryAction()
     {
-        $viewModel = new ViewModel();
+        $url = $this->params()->fromRoute('url');
 
-        return $viewModel;
+        $pageList = $this->pageRepository->getPagesByCategory($url);
+
+        if (!$pageList) {
+            return $this->redirect()->toRoute('home', [], true);
+        }
+
+        var_dump($pageList);
+        exit;
+    }
+
+    /**
+     * @return ViewModel
+     */
+    public function pageAction()
+    {
+        $url = $this->params()->fromRoute('url');
+
+        if (!$url) {
+            return $this->redirect()->toRoute('home', [], true);
+        }
+
+        $page = $this->pageRepository->getSinglePageByUrl($url);
+
+        if (!$page || $page['status'] != 'approved') {
+            return $this->redirect()->toRoute('home', [], true);
+        }
+
+        var_dump($page);
+        exit;
     }
 }

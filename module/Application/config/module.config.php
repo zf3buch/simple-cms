@@ -10,8 +10,8 @@
 namespace Application;
 
 use Application\Controller\IndexController;
+use Application\Controller\IndexControllerFactory;
 use Zend\Router\Http\Literal;
-use Zend\ServiceManager\Factory\InvokableFactory;
 
 return [
     'router' => [
@@ -31,7 +31,7 @@ return [
 
     'controllers' => [
         'factories' => [
-            IndexController::class => InvokableFactory::class,
+            IndexController::class => IndexControllerFactory::class,
         ],
     ],
 
@@ -42,7 +42,8 @@ return [
         'not_found_template'       => 'error/404',
         'exception_template'       => 'error/index',
         'template_map'             =>
-            include APPLICATION_MODULE_ROOT . '/config/template_map.config.php',
+            include APPLICATION_MODULE_ROOT
+                . '/config/template_map.config.php',
         'template_path_stack'      => [
             APPLICATION_MODULE_ROOT . '/view',
         ],

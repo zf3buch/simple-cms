@@ -8,4 +8,11 @@
  *
  */
 
-return [];
+return [
+    'service_manager' => [
+        'factories' => [
+            PageModel\Repository\PageRepositoryInterface::class =>
+                PageModel\Repository\PageRepositoryFactory::class
+        ],
+    ],
+];
