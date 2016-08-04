@@ -18,7 +18,7 @@ return [
             'category' => [
                 'type'    => Segment::class,
                 'options' => [
-                    'route'       => '/category/:url',
+                    'route'       => '/category[/:url]',
                     'defaults'    => [
                         'controller' => DisplayController::class,
                         'action'     => 'category',
@@ -31,7 +31,7 @@ return [
             'page'     => [
                 'type'    => Segment::class,
                 'options' => [
-                    'route'       => '/page/:url',
+                    'route'       => '/page[/:url]',
                     'defaults'    => [
                         'controller' => DisplayController::class,
                         'action'     => 'page',
