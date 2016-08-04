@@ -8,6 +8,8 @@
  *
  */
 
+use PageModel\Config\PageConfigFactory;
+use PageModel\Config\PageConfigInterface;
 use PageModel\Hydrator\PageHydrator;
 use PageModel\Repository\PageRepositoryFactory;
 use PageModel\Repository\PageRepositoryInterface;
@@ -18,6 +20,8 @@ use Zend\ServiceManager\Factory\InvokableFactory;
 return [
     'service_manager' => [
         'factories' => [
+            PageConfigInterface::class => PageConfigFactory::class,
+
             PageStorageInterface::class => PageDbStorageFactory::class,
 
             PageRepositoryInterface::class => PageRepositoryFactory::class,

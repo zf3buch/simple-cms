@@ -8,6 +8,8 @@
  *
  */
 
+use CategoryModel\Config\CategoryConfigFactory;
+use CategoryModel\Config\CategoryConfigInterface;
 use CategoryModel\Hydrator\CategoryHydrator;
 use CategoryModel\Repository\CategoryRepositoryFactory;
 use CategoryModel\Repository\CategoryRepositoryInterface;
@@ -18,6 +20,8 @@ use Zend\ServiceManager\Factory\InvokableFactory;
 return [
     'service_manager' => [
         'factories' => [
+            CategoryConfigInterface::class => CategoryConfigFactory::class,
+
             CategoryStorageInterface::class =>
                 CategoryDbStorageFactory::class,
 
