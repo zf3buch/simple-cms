@@ -91,7 +91,7 @@ class PageForm extends Form implements PageFormInterface
                 ],
                 'options'    => [
                     'value_options'    => $this->categoryOptions,
-                    'label'            => 'Unternehmen',
+                    'label'            => 'Kategorie',
                     'label_attributes' => [
                         'class' => 'col-sm-2 control-label',
                     ],
@@ -107,7 +107,7 @@ class PageForm extends Form implements PageFormInterface
                     'class' => 'form-control',
                 ],
                 'options'    => [
-                    'label'            => 'Ort',
+                    'label'            => 'Autor',
                     'label_attributes' => [
                         'class' => 'col-sm-2 control-label',
                     ],

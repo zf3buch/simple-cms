@@ -45,9 +45,6 @@ class PageInputFilterFactory implements FactoryInterface
         $inputFilter->setStatusOptions(
             array_keys($pageConfig->getStatusOptions())
         );
-        $inputFilter->setTypeOptions(
-            array_keys($pageConfig->getTypeOptions())
-        );
         $inputFilter->setCategoryOptions(
             array_keys($categoryRepository->getCategoryOptions())
         );
