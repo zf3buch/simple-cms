@@ -15,19 +15,22 @@ use PageBackend\Controller\ModifyControllerFactory;
 use PageBackend\Form\PageFormFactory;
 use PageBackend\Form\PageFormInterface;
 use Zend\Navigation\Page\Mvc;
-use Zend\Router\Http\Literal;
 use Zend\Router\Http\Segment;
 
 return [
     'router' => [
         'routes' => [
             'page-backend' => [
-                'type'          => Literal::class,
+                'type'          => Segment::class,
                 'options'       => [
-                    'route'    => '/page-backend',
+                    'route'    => '/:lang/page-backend',
                     'defaults' => [
                         'controller' => DisplayController::class,
                         'action'     => 'index',
+                        'lang'       => 'de',
+                    ],
+                    'constraints' => [
+                        'lang' => '(de|en)',
                     ],
                 ],
                 'may_terminate' => true,

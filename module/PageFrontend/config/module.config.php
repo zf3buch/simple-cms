@@ -19,26 +19,30 @@ return [
             'category' => [
                 'type'    => Segment::class,
                 'options' => [
-                    'route'       => '/category[/:url]',
+                    'route'       => '/:lang/category[/:url]',
                     'defaults'    => [
                         'controller' => DisplayController::class,
                         'action'     => 'category',
+                        'lang'       => 'de',
                     ],
                     'constraints' => [
-                        'url' => '[a-z1-9-]*',
+                        'lang' => '(de|en)',
+                        'url'  => '[a-z1-9-]*',
                     ],
                 ],
             ],
             'page'     => [
                 'type'    => Segment::class,
                 'options' => [
-                    'route'       => '/page[/:url]',
+                    'route'       => '/:lang/page[/:url]',
                     'defaults'    => [
                         'controller' => DisplayController::class,
                         'action'     => 'page',
+                        'lang'       => 'de',
                     ],
                     'constraints' => [
-                        'url' => '[a-z1-9-]*',
+                        'lang' => '(de|en)',
+                        'url'  => '[a-z1-9-]*',
                     ],
                 ],
             ],
@@ -53,7 +57,8 @@ return [
 
     'view_manager' => [
         'template_map'        =>
-            include PAGE_FRONTEND_MODULE_ROOT . '/config/template_map.config.php',
+            include PAGE_FRONTEND_MODULE_ROOT
+                . '/config/template_map.config.php',
         'template_path_stack' => [
             PAGE_FRONTEND_MODULE_ROOT . '/view'
         ],
@@ -61,7 +66,7 @@ return [
 
     'navigation' => [
         'default' => [
-            'category'     => [
+            'category' => [
                 'type'          => Mvc::class,
                 'order'         => '200',
                 'label'         => 'Seiten',

@@ -15,7 +15,6 @@ use CategoryBackend\Controller\ModifyControllerFactory;
 use CategoryBackend\Form\CategoryFormFactory;
 use CategoryBackend\Form\CategoryFormInterface;
 use Zend\Navigation\Page\Mvc;
-use Zend\Router\Http\Literal;
 use Zend\Router\Http\Segment;
 
 return [
@@ -27,12 +26,16 @@ return [
     'router' => [
         'routes' => [
             'category-backend' => [
-                'type'          => Literal::class,
+                'type'          => Segment::class,
                 'options'       => [
-                    'route'    => '/category-backend',
-                    'defaults' => [
+                    'route'       => '/:lang/category-backend',
+                    'defaults'    => [
                         'controller' => DisplayController::class,
                         'action'     => 'index',
+                        'lang'       => 'de',
+                    ],
+                    'constraints' => [
+                        'lang' => '(de|en)',
                     ],
                 ],
                 'may_terminate' => true,
