@@ -143,7 +143,17 @@ class ModifyController extends AbstractActionController
         $this->categoryForm->bind($category);
 
         if ($this->getRequest()->isPost()) {
-            $this->categoryForm->setData($this->params()->fromPost());
+            $postData  = $this->params()->fromPost();
+            $filesData = $this->params()->fromFiles();
+
+            if (isset($filesData['image'])
+                && $filesData['image']['size'] > 0
+            ) {
+                $postData = array_merge_recursive($postData, $filesData);
+            }
+
+            $this->categoryForm->setData($postData);
+            $this->categoryForm->addImageFileUploadFilter();
 
             if ($this->categoryForm->isValid()) {
                 $category->update();

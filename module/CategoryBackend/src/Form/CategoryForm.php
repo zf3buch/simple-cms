@@ -10,6 +10,9 @@
 
 namespace CategoryBackend\Form;
 
+use CategoryModel\Filter\ImageFileUpload;
+use TravelloFilter\Filter\StringToUrlSlug;
+use Zend\Filter\StaticFilter;
 use Zend\Form\Element\Csrf;
 use Zend\Form\Element\File;
 use Zend\Form\Element\Select;
@@ -31,11 +34,37 @@ class CategoryForm extends Form implements CategoryFormInterface
     private $statusOptions;
 
     /**
+     * @var string
+     */
+    private $imageFilePath;
+
+    /**
+     * @var string
+     */
+    private $imageFilePattern;
+
+    /**
      * @param array $statusOptions
      */
     public function setStatusOptions($statusOptions)
     {
         $this->statusOptions = $statusOptions;
+    }
+
+    /**
+     * @param string $imageFilePath
+     */
+    public function setImageFilePath($imageFilePath)
+    {
+        $this->imageFilePath = $imageFilePath;
+    }
+
+    /**
+     * @param string $imageFilePattern
+     */
+    public function setImageFilePattern($imageFilePattern)
+    {
+        $this->imageFilePattern = $imageFilePattern;
     }
 
     /**
@@ -155,5 +184,26 @@ class CategoryForm extends Form implements CategoryFormInterface
         }
 
         $this->setValidationGroup(array_keys($this->getElements()));
+    }
+
+    /**
+     * Add image file upload filter to input filter
+     */
+    public function addImageFileUploadFilter()
+    {
+        $nameValue = $this->get('name')->getValue();
+
+        $targetFile = sprintf(
+            $this->imageFilePattern,
+            StaticFilter::execute($nameValue, StringToUrlSlug::class)
+        );
+
+        $imageFileUploadFilter = new ImageFileUpload(
+            $this->imageFilePath, $targetFile
+        );
+
+        $this->getInputFilter()->get('image')->getFilterChain()->attach(
+            $imageFileUploadFilter
+        );
     }
 }

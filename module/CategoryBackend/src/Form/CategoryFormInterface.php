@@ -33,4 +33,9 @@ interface CategoryFormInterface extends FormInterface
      * Switch to edit mode
      */
     public function editMode();
+
+    /**
+     * Add image file upload filter to input filter
+     */
+    public function addImageFileUploadFilter();
 }

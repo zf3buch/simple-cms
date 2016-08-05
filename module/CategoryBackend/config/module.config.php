@@ -19,6 +19,11 @@ use Zend\Router\Http\Literal;
 use Zend\Router\Http\Segment;
 
 return [
+    'category_admin' => [
+        'image_file_path'    => PROJECT_ROOT . '/public',
+        'image_file_pattern' => '/categories/%s.jpg',
+    ],
+
     'router' => [
         'routes' => [
             'category-backend' => [

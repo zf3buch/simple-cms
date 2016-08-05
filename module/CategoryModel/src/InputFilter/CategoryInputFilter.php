@@ -13,7 +13,10 @@ namespace CategoryModel\InputFilter;
 use TravelloFilter\Filter\StringHtmlPurify;
 use Zend\Filter\StringTrim;
 use Zend\Filter\StripTags;
+use Zend\InputFilter\FileInput;
 use Zend\InputFilter\InputFilter;
+use Zend\Validator\File\ImageSize;
+use Zend\Validator\File\MimeType;
 use Zend\Validator\InArray;
 use Zend\Validator\NotEmpty;
 use Zend\Validator\StringLength;
@@ -126,9 +129,28 @@ class CategoryInputFilter extends InputFilter
         $this->add(
             [
                 'name'       => 'image',
+                'type'       => FileInput::class,
                 'required'   => false,
                 'filters'    => [],
-                'validators' => [],
+                'validators' => [
+                    [
+                        'name'    => MimeType::class,
+                        'options' => [
+                            'mimeType' => 'image/jpeg,image/jpg',
+                            'message'  => 'Nur JPG Grafiken erlaubt!',
+                        ],
+                    ],
+                    [
+                        'name'    => ImageSize::class,
+                        'options' => [
+                            'minWidth'  => '600',
+                            'maxWidth'  => '600',
+                            'minHeight' => '600',
+                            'maxHeight' => '600',
+                            'message'   => 'Nur 600x600 Pixel erlaubt!',
+                        ],
+                    ],
+                ],
             ]
         );
     }

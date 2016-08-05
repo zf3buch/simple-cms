@@ -8,14 +8,6 @@
  *
  */
 
-/**
- * ZF3 book Zend Framework Center Example Application
- *
- * @author     Ralf Eggert <ralf@travello.de>
- * @link       https://github.com/zf3buch/zendframework-center
- * @license    http://opensource.org/licenses/MIT The MIT License (MIT)
- */
-
 namespace CategoryBackend\Form;
 
 use CategoryModel\Config\CategoryConfigInterface;
@@ -60,6 +52,9 @@ class CategoryFormFactory implements FactoryInterface
             CategoryInputFilter::class
         );
 
+        /** @var array $config */
+        $moduleConfig = $container->get('Config');
+
         /** @var CategoryConfigInterface $categoryConfig */
         $categoryConfig = $container->get(CategoryConfigInterface::class);
 
@@ -67,6 +62,12 @@ class CategoryFormFactory implements FactoryInterface
         $form->setHydrator($categoryHydrator);
         $form->setInputFilter($categoryInputFilter);
         $form->setStatusOptions($categoryConfig->getStatusOptions());
+        $form->setImageFilePath(
+            $moduleConfig['category_admin']['image_file_path']
+        );
+        $form->setImageFilePattern(
+            $moduleConfig['category_admin']['image_file_pattern']
+        );
 
         return $form;
     }
