@@ -13,13 +13,17 @@ namespace CategoryBackend\Controller;
 use CategoryBackend\Form\CategoryFormInterface;
 use CategoryModel\Repository\CategoryRepositoryInterface;
 use Zend\Form\Form;
+use Zend\Http\PhpEnvironment\Request;
 use Zend\Mvc\Controller\AbstractActionController;
+use Zend\Mvc\Plugin\FlashMessenger\FlashMessenger;
 use Zend\View\Model\ViewModel;
 
 /**
  * Class ModifyController
  *
  * @package CategoryBackend\Controller
+ * @method Request getRequest()
+ * @method FlashMessenger flashMessenger()
  */
 class ModifyController extends AbstractActionController
 {
@@ -57,6 +61,50 @@ class ModifyController extends AbstractActionController
     public function addAction()
     {
         $this->categoryForm->addMode();
+
+        if ($this->getRequest()->isPost()) {
+            $this->categoryForm->setData($this->params()->fromPost());
+
+            if ($this->categoryForm->isValid()) {
+                $category = $this->categoryRepository->createCategoryFromData(
+                    $this->categoryForm->getData()
+                );
+
+                $result = $this->categoryRepository->saveCategory($category);
+
+                if ($result) {
+                    $this->flashMessenger()->addSuccessMessage(
+                        'Die neue Kategorie wurde gespeichert!'
+                    );
+
+                    return $this->redirect()->toRoute(
+                        'category-backend/modify',
+                        [
+                            'action' => 'edit',
+                            'id'     => $category->getId(),
+                        ],
+                        true
+                    );
+                }
+            }
+
+            $messages = $this->categoryForm->getMessages();
+
+            if (isset($messages['csrf'])) {
+                $this->flashMessenger()->addErrorMessage(
+                    'Zeitüberschreitung! Bitte Formular erneut absenden!'
+                );
+            } else {
+                $this->flashMessenger()->addErrorMessage(
+                    'Bitte überprüfen Sie die Daten der Kategorie!'
+                );
+            }
+        } else {
+            $this->flashMessenger()->addInfoMessage(
+                'Sie können die neue Kategorie nun anlegen!'
+            );
+        }
+
         $this->categoryForm->setAttribute(
             'action',
             $this->url()->fromRoute(
@@ -93,6 +141,48 @@ class ModifyController extends AbstractActionController
         }
 
         $this->categoryForm->bind($category);
+
+        if ($this->getRequest()->isPost()) {
+            $this->categoryForm->setData($this->params()->fromPost());
+
+            if ($this->categoryForm->isValid()) {
+                $category->update();
+
+                $result = $this->categoryRepository->saveCategory($category);
+
+                if ($result) {
+                    $this->flashMessenger()->addSuccessMessage(
+                        'Die Kategorie wurde gespeichert!'
+                    );
+
+                    return $this->redirect()->toRoute(
+                        'category-backend/modify',
+                        [
+                            'action' => 'edit',
+                            'id'     => $category->getId(),
+                        ],
+                        true
+                    );
+                }
+            }
+
+            $messages = $this->categoryForm->getMessages();
+
+            if (isset($messages['csrf'])) {
+                $this->flashMessenger()->addErrorMessage(
+                    'Zeitüberschreitung! Bitte Formular erneut absenden!'
+                );
+            } else {
+                $this->flashMessenger()->addErrorMessage(
+                    'Bitte überprüfen Sie die Daten der Kategorie!'
+                );
+            }
+        } else {
+            $this->flashMessenger()->addInfoMessage(
+                'Sie können die Kategorie nun bearbeiten!'
+            );
+        }
+
         $this->categoryForm->setAttribute(
             'action',
             $this->url()->fromRoute(
@@ -129,6 +219,18 @@ class ModifyController extends AbstractActionController
             return $this->redirect()->toRoute('category-backend', [], true);
         }
 
+        $delete = $this->params()->fromQuery('delete', 'no');
+
+        if ($delete == 'yes') {
+            $this->categoryRepository->deleteCategory($category);
+
+            $this->flashMessenger()->addSuccessMessage(
+                'Die Kategorie wurde gelöscht!'
+            );
+
+            return $this->redirect()->toRoute('category-backend', [], true);
+        }
+
         $viewModel = new ViewModel();
         $viewModel->setVariable('category', $category);
 
@@ -154,6 +256,22 @@ class ModifyController extends AbstractActionController
             return $this->redirect()->toRoute('category-backend', [], true);
         }
 
+        $approve = $this->params()->fromQuery('approve', 'no');
+
+        if ($approve == 'yes') {
+            $category->approve();
+
+            $this->categoryRepository->saveCategory($category);
+
+            $this->flashMessenger()->addSuccessMessage(
+                'Die Kategorie wurde genehmigt!'
+            );
+
+            return $this->redirect()->toRoute(
+                'category-backend/show', ['id' => $category->getId()], true
+            );
+        }
+
         $viewModel = new ViewModel();
         $viewModel->setVariable('category', $category);
 
@@ -177,6 +295,22 @@ class ModifyController extends AbstractActionController
 
         if (!$category) {
             return $this->redirect()->toRoute('category-backend', [], true);
+        }
+
+        $block = $this->params()->fromQuery('block', 'no');
+
+        if ($block == 'yes') {
+            $category->block();
+
+            $this->categoryRepository->saveCategory($category);
+
+            $this->flashMessenger()->addSuccessMessage(
+                'Die Kategorie wurde gesperrt!'
+            );
+
+            return $this->redirect()->toRoute(
+                'category-backend/show', ['id' => $category->getId()], true
+            );
         }
 
         $viewModel = new ViewModel();

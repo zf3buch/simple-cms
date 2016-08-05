@@ -32,7 +32,8 @@
     "zendframework/zend-form": "^2.9",
     "zendframework/zend-math": "^3.0",
     "zendframework/zend-session": "^2.7",
-    "zendframework/zend-i18n": "^2.7"
+    "zendframework/zend-i18n": "^2.7",
+    "ralfeggert/travello-view-helper": "^1.4"
   },
   "require-dev": {
     "zendframework/zend-developer-tools": "^1.1",

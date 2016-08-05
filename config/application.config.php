@@ -9,6 +9,8 @@
 
 return [
     'modules' => [
+        'TravelloViewHelper',
+        'Zend\Mvc\Plugin\FlashMessenger',
         'Zend\I18n',
         'Zend\Form',
         'Zend\InputFilter',

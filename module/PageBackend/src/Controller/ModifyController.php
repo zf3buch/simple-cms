@@ -13,13 +13,17 @@ namespace PageBackend\Controller;
 use PageBackend\Form\PageFormInterface;
 use PageModel\Repository\PageRepositoryInterface;
 use Zend\Form\Form;
+use Zend\Http\PhpEnvironment\Request;
 use Zend\Mvc\Controller\AbstractActionController;
+use Zend\Mvc\Plugin\FlashMessenger\FlashMessenger;
 use Zend\View\Model\ViewModel;
 
 /**
  * Class ModifyController
  *
  * @package PageBackend\Controller
+ * @method Request getRequest()
+ * @method FlashMessenger flashMessenger()
  */
 class ModifyController extends AbstractActionController
 {
@@ -54,6 +58,49 @@ class ModifyController extends AbstractActionController
      */
     public function addAction()
     {
+        if ($this->getRequest()->isPost()) {
+            $this->pageForm->setData($this->params()->fromPost());
+
+            if ($this->pageForm->isValid()) {
+                $page = $this->pageRepository->createPageFromData(
+                    $this->pageForm->getData()
+                );
+
+                $result = $this->pageRepository->savePage($page);
+
+                if ($result) {
+                    $this->flashMessenger()->addSuccessMessage(
+                        'Die neue Seite wurde gespeichert!'
+                    );
+
+                    return $this->redirect()->toRoute(
+                        'page-backend/modify',
+                        [
+                            'action' => 'edit',
+                            'id'     => $page->getId(),
+                        ],
+                        true
+                    );
+                }
+            }
+
+            $messages = $this->pageForm->getMessages();
+
+            if (isset($messages['csrf'])) {
+                $this->flashMessenger()->addErrorMessage(
+                    'Zeitüberschreitung! Bitte Formular erneut absenden!'
+                );
+            } else {
+                $this->flashMessenger()->addErrorMessage(
+                    'Bitte überprüfen Sie die Daten der Seite!'
+                );
+            }
+        } else {
+            $this->flashMessenger()->addInfoMessage(
+                'Sie können die neue Seite nun anlegen!'
+            );
+        }
+
         $this->pageForm->setAttribute(
             'action',
             $this->url()->fromRoute(
@@ -88,6 +135,48 @@ class ModifyController extends AbstractActionController
         }
 
         $this->pageForm->bind($page);
+
+        if ($this->getRequest()->isPost()) {
+            $this->pageForm->setData($this->params()->fromPost());
+
+            if ($this->pageForm->isValid()) {
+                $page->update();
+
+                $result = $this->pageRepository->savePage($page);
+
+                if ($result) {
+                    $this->flashMessenger()->addSuccessMessage(
+                        'Die Seite wurde gespeichert!'
+                    );
+
+                    return $this->redirect()->toRoute(
+                        'page-backend/modify',
+                        [
+                            'action' => 'edit',
+                            'id'     => $page->getId(),
+                        ],
+                        true
+                    );
+                }
+            }
+
+            $messages = $this->pageForm->getMessages();
+
+            if (isset($messages['csrf'])) {
+                $this->flashMessenger()->addErrorMessage(
+                    'Zeitüberschreitung! Bitte Formular erneut absenden!'
+                );
+            } else {
+                $this->flashMessenger()->addErrorMessage(
+                    'Bitte überprüfen Sie die Daten der Seite!'
+                );
+            }
+        } else {
+            $this->flashMessenger()->addInfoMessage(
+                'Sie können die Seite nun bearbeiten!'
+            );
+        }
+
         $this->pageForm->setAttribute(
             'action',
             $this->url()->fromRoute(
@@ -122,6 +211,18 @@ class ModifyController extends AbstractActionController
             return $this->redirect()->toRoute('page-backend', [], true);
         }
 
+        $delete = $this->params()->fromQuery('delete', 'no');
+
+        if ($delete == 'yes') {
+            $this->pageRepository->deletePage($page);
+
+            $this->flashMessenger()->addSuccessMessage(
+                'Die Seite wurde gelöscht!'
+            );
+
+            return $this->redirect()->toRoute('page-backend', [], true);
+        }
+
         $viewModel = new ViewModel();
         $viewModel->setVariable('page', $page);
 
@@ -145,6 +246,22 @@ class ModifyController extends AbstractActionController
             return $this->redirect()->toRoute('page-backend', [], true);
         }
 
+        $approve = $this->params()->fromQuery('approve', 'no');
+
+        if ($approve == 'yes') {
+            $page->approve();
+
+            $this->pageRepository->savePage($page);
+
+            $this->flashMessenger()->addSuccessMessage(
+                'Die Seite wurde genehmigt!'
+            );
+
+            return $this->redirect()->toRoute(
+                'page-backend/show', ['id' => $page->getId()], true
+            );
+        }
+
         $viewModel = new ViewModel();
         $viewModel->setVariable('page', $page);
 
@@ -166,6 +283,22 @@ class ModifyController extends AbstractActionController
 
         if (!$page) {
             return $this->redirect()->toRoute('page-backend', [], true);
+        }
+
+        $block = $this->params()->fromQuery('block', 'no');
+
+        if ($block == 'yes') {
+            $page->block();
+
+            $this->pageRepository->savePage($page);
+
+            $this->flashMessenger()->addSuccessMessage(
+                'Die Seite wurde gesperrt!'
+            );
+
+            return $this->redirect()->toRoute(
+                'page-backend/show', ['id' => $page->getId()], true
+            );
         }
 
         $viewModel = new ViewModel();
