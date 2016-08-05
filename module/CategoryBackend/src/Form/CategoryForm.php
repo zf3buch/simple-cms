@@ -90,11 +90,8 @@ class CategoryForm extends Form implements CategoryFormInterface
                     'class' => 'form-control',
                 ],
                 'options'    => [
-                    'value_options'    => $this->statusOptions,
-                    'label'            => 'Status',
-                    'label_attributes' => [
-                        'class' => 'col-sm-2 control-label',
-                    ],
+                    'value_options' => $this->statusOptions,
+                    'label'         => 'Status',
                 ],
             ]
         );
@@ -107,10 +104,7 @@ class CategoryForm extends Form implements CategoryFormInterface
                     'class' => 'form-control',
                 ],
                 'options'    => [
-                    'label'            => 'Kategoriename',
-                    'label_attributes' => [
-                        'class' => 'col-sm-2 control-label',
-                    ],
+                    'label' => 'Kategoriename',
                 ],
             ]
         );
@@ -124,10 +118,7 @@ class CategoryForm extends Form implements CategoryFormInterface
                     'class' => 'form-control',
                 ],
                 'options'    => [
-                    'label'            => 'Beschreibung',
-                    'label_attributes' => [
-                        'class' => 'col-sm-2 control-label',
-                    ],
+                    'label' => 'Beschreibung',
                 ],
             ]
         );
@@ -140,10 +131,7 @@ class CategoryForm extends Form implements CategoryFormInterface
                     'class' => 'form-control-static',
                 ],
                 'options'    => [
-                    'label'            => 'Bild',
-                    'label_attributes' => [
-                        'class' => 'col-sm-2 control-label',
-                    ],
+                    'label' => 'Bild',
                 ],
             ]
         );

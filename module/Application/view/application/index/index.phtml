@@ -9,11 +9,8 @@
 
 use PageModel\Entity\PageEntity;
 
+$this->h1('Willkommen zum Simple CMS!');
 ?>
-<div class="page-header">
-  <h1>Willkommen zum Simple CMS!</h1>
-</div>
-
 <div class="row">
   <?php /** @var PageEntity $page */ ?>
   <?php foreach ($this->randomPages as $page) : ?>

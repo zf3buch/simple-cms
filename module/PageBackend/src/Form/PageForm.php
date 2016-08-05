@@ -73,11 +73,8 @@ class PageForm extends Form implements PageFormInterface
                     'class' => 'form-control',
                 ],
                 'options'    => [
-                    'value_options'    => $this->statusOptions,
-                    'label'            => 'Status',
-                    'label_attributes' => [
-                        'class' => 'col-sm-2 control-label',
-                    ],
+                    'value_options' => $this->statusOptions,
+                    'label'         => 'Status',
                 ],
             ]
         );
@@ -90,11 +87,8 @@ class PageForm extends Form implements PageFormInterface
                     'class' => 'form-control',
                 ],
                 'options'    => [
-                    'value_options'    => $this->categoryOptions,
-                    'label'            => 'Kategorie',
-                    'label_attributes' => [
-                        'class' => 'col-sm-2 control-label',
-                    ],
+                    'value_options' => $this->categoryOptions,
+                    'label'         => 'Kategorie',
                 ],
             ]
         );
@@ -107,10 +101,7 @@ class PageForm extends Form implements PageFormInterface
                     'class' => 'form-control',
                 ],
                 'options'    => [
-                    'label'            => 'Autor',
-                    'label_attributes' => [
-                        'class' => 'col-sm-2 control-label',
-                    ],
+                    'label' => 'Autor',
                 ],
             ]
         );
@@ -123,10 +114,7 @@ class PageForm extends Form implements PageFormInterface
                     'class' => 'form-control',
                 ],
                 'options'    => [
-                    'label'            => 'Titel',
-                    'label_attributes' => [
-                        'class' => 'col-sm-2 control-label',
-                    ],
+                    'label' => 'Titel',
                 ],
             ]
         );
@@ -140,10 +128,7 @@ class PageForm extends Form implements PageFormInterface
                     'class' => 'form-control',
                 ],
                 'options'    => [
-                    'label'            => 'Text',
-                    'label_attributes' => [
-                        'class' => 'col-sm-2 control-label',
-                    ],
+                    'label' => 'Text',
                 ],
             ]
         );

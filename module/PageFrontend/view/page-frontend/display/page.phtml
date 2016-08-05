@@ -19,11 +19,8 @@ $listLink = $this->url(
 $listText = 'Zurück zur Kategorie ' . $page->getCategory()->getName();
 
 $this->headTitle($page->getTitle());
+$this->h1($page->getTitle());
 ?>
-<div class="page-header">
-  <h1><?= $page->getTitle() ?></h1>
-</div>
-
 <p class="text-center">
   <a class="btn btn-default" href="<?= $listLink; ?>">
     <i class="fa fa-arrow-circle-left"></i> <?= $listText; ?>

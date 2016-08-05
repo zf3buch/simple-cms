@@ -15,11 +15,8 @@ $addLink = $this->url(
 );
 
 $this->headTitle('Seiten administrieren');
+$this->h1('Seiten administrieren');
 ?>
-<div class="page-header">
-  <h1>Seiten administrieren</h1>
-</div>
-
 <table class="table table-condensed table-bordered table-striped">
   <thead>
   <tr>
@@ -92,7 +89,6 @@ $this->headTitle('Seiten administrieren');
   <?php endforeach; ?>
   </tbody>
 </table>
-
 <nav class="text-center">
   <?php
   echo $this->paginationControl(

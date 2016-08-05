@@ -16,16 +16,13 @@ $form = $this->categoryForm;
 $listLink = $this->url('category-backend', [], true);
 
 $this->headTitle('Kategorien anlegen');
+$this->h1('Kategorien anlegen');
 
 $this->inlineScript()->prependFile(
     '/assets/vendor/ckeditor/ckeditor.js', 'text/javascript'
 );
 $this->inlineScript()->appendScript('CKEDITOR.replace("category_description");');
 ?>
-<div class="page-header">
-  <h1>Kategorien anlegen</h1>
-</div>
-
 <p>
   <a href="<?= $listLink ?>" class="btn btn-default">
     <i class="fa fa-list"></i>
@@ -33,33 +30,5 @@ $this->inlineScript()->appendScript('CKEDITOR.replace("category_description");')
   </a>
 </p>
 <div class="well">
-  <?= $this->form()->openTag($form); ?>
-  <?= $this->formElement($form->get('csrf')); ?>
-  <div class="form-group">
-    <?= $this->formLabel($form->get('status')); ?>
-    <div class="col-sm-10">
-      <?= $this->formElement($form->get('status')); ?>
-      <?= $this->formElementErrors($form->get('status')); ?>
-    </div>
-  </div>
-  <div class="form-group">
-    <?= $this->formLabel($form->get('name')); ?>
-    <div class="col-sm-10">
-      <?= $this->formElement($form->get('name')); ?>
-      <?= $this->formElementErrors($form->get('name')); ?>
-    </div>
-  </div>
-  <div class="form-group">
-    <?= $this->formLabel($form->get('description')); ?>
-    <div class="col-sm-10">
-      <?= $this->formElement($form->get('description')); ?>
-      <?= $this->formElementErrors($form->get('description')); ?>
-    </div>
-  </div>
-  <div class="form-group">
-    <div class="col-sm-offset-2 col-sm-10">
-      <?= $this->formElement($form->get('save_category')); ?>
-    </div>
-  </div>
-  <?= $this->form()->closeTag(); ?>
+  <?= $this->bootstrapForm($form); ?>
 </div>
