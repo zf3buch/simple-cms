@@ -35,6 +35,11 @@ $blockLink   = $this->url(
 );
 
 $this->headTitle('Seite bearbeiten');
+
+$this->inlineScript()->prependFile(
+    '/assets/vendor/ckeditor/ckeditor.js', 'text/javascript'
+);
+$this->inlineScript()->appendScript('CKEDITOR.replace("page_text");');
 ?>
 <div class="page-header">
   <h1>Seite bearbeiten</h1>

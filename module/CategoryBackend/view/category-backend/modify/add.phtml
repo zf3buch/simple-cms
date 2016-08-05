@@ -16,6 +16,11 @@ $form = $this->categoryForm;
 $listLink = $this->url('category-backend', [], true);
 
 $this->headTitle('Kategorien anlegen');
+
+$this->inlineScript()->prependFile(
+    '/assets/vendor/ckeditor/ckeditor.js', 'text/javascript'
+);
+$this->inlineScript()->appendScript('CKEDITOR.replace("category_description");');
 ?>
 <div class="page-header">
   <h1>Kategorien anlegen</h1>

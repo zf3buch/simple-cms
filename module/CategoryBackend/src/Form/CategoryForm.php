@@ -91,6 +91,7 @@ class CategoryForm extends Form implements CategoryFormInterface
                 'type'       => Textarea::class,
                 'name'       => 'description',
                 'attributes' => [
+                    'id'    => 'category_description',
                     'class' => 'form-control',
                 ],
                 'options'    => [

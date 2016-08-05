@@ -10,6 +10,7 @@
 
 namespace PageModel\InputFilter;
 
+use TravelloFilter\Filter\StringHtmlPurify;
 use Zend\Filter\StringTrim;
 use Zend\Filter\StripTags;
 use Zend\InputFilter\InputFilter;
@@ -138,6 +139,7 @@ class PageInputFilter extends InputFilter
                 'required'   => true,
                 'filters'    => [
                     ['name' => StringTrim::class],
+                    ['name' => StringHtmlPurify::class],
                 ],
                 'validators' => [
                     [

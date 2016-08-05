@@ -47,6 +47,11 @@ class Composer
             getcwd() . '/vendor/fortawesome/font-awesome/*'
         );
 
+        self::copyFiles(
+            $baseDir . '/ckeditor/',
+            getcwd() . '/vendor/ckeditor/ckeditor/*'
+        );
+
         echo "Copied files from to " . $baseDir . "\n";
     }
 

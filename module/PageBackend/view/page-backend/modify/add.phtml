@@ -16,6 +16,11 @@ $form = $this->pageForm;
 $listLink = $this->url('page-backend', [], true);
 
 $this->headTitle('Seite anlegen');
+
+$this->inlineScript()->prependFile(
+    '/assets/vendor/ckeditor/ckeditor.js', 'text/javascript'
+);
+$this->inlineScript()->appendScript('CKEDITOR.replace("page_text");');
 ?>
 <div class="page-header">
   <h1>Seite anlegen</h1>

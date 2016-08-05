@@ -136,6 +136,7 @@ class PageForm extends Form implements PageFormInterface
                 'type'       => Textarea::class,
                 'name'       => 'text',
                 'attributes' => [
+                    'id'    => 'page_text',
                     'class' => 'form-control',
                 ],
                 'options'    => [

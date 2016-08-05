@@ -10,6 +10,7 @@
 
 namespace CategoryModel\InputFilter;
 
+use TravelloFilter\Filter\StringHtmlPurify;
 use Zend\Filter\StringTrim;
 use Zend\Filter\StripTags;
 use Zend\InputFilter\InputFilter;
@@ -100,8 +101,8 @@ class CategoryInputFilter extends InputFilter
                 'name'       => 'description',
                 'required'   => true,
                 'filters'    => [
-                    ['name' => StripTags::class],
                     ['name' => StringTrim::class],
+                    ['name' => StringHtmlPurify::class],
                 ],
                 'validators' => [
                     [
