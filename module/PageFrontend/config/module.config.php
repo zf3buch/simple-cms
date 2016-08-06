@@ -10,7 +10,12 @@
 
 use PageFrontend\Controller\DisplayController;
 use PageFrontend\Controller\DisplayControllerFactory;
+use PageFrontend\Permissions\Resource\DisplayResource;
+use UserModel\Permissions\Role\AdminRole;
+use UserModel\Permissions\Role\EditorRole;
+use UserModel\Permissions\Role\GuestRole;
 use Zend\Navigation\Page\Mvc;
+use Zend\Permissions\Acl\Acl;
 use Zend\Router\Http\Segment;
 
 return [
@@ -91,6 +96,24 @@ return [
                 'type'     => 'phparray',
                 'base_dir' => PAGE_FRONTEND_MODULE_ROOT . '/language',
                 'pattern'  => '%s.php',
+            ],
+        ],
+    ],
+
+    'acl' => [
+        GuestRole::NAME   => [
+            DisplayResource::NAME => [
+                Acl::TYPE_ALLOW => null,
+            ],
+        ],
+        EditorRole::NAME => [
+            DisplayResource::NAME => [
+                Acl::TYPE_ALLOW => null,
+            ],
+        ],
+        AdminRole::NAME   => [
+            DisplayResource::NAME => [
+                Acl::TYPE_ALLOW => null,
             ],
         ],
     ],

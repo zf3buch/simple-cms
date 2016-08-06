@@ -14,7 +14,11 @@ use CategoryBackend\Controller\ModifyController;
 use CategoryBackend\Controller\ModifyControllerFactory;
 use CategoryBackend\Form\CategoryFormFactory;
 use CategoryBackend\Form\CategoryFormInterface;
+use CategoryBackend\Permissions\Resource\DisplayResource;
+use CategoryBackend\Permissions\Resource\ModifyResource;
+use UserModel\Permissions\Role\AdminRole;
 use Zend\Navigation\Page\Mvc;
+use Zend\Permissions\Acl\Acl;
 use Zend\Router\Http\Segment;
 
 return [
@@ -138,6 +142,17 @@ return [
                 'type'     => 'phparray',
                 'base_dir' => CATEGORY_BACKEND_MODULE_ROOT . '/language',
                 'pattern'  => '%s.php',
+            ],
+        ],
+    ],
+
+    'acl' => [
+        AdminRole::NAME => [
+            DisplayResource::NAME => [
+                Acl::TYPE_ALLOW => null,
+            ],
+            ModifyResource::NAME  => [
+                Acl::TYPE_ALLOW => null,
             ],
         ],
     ],

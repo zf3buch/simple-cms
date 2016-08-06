@@ -14,7 +14,11 @@ use PageBackend\Controller\ModifyController;
 use PageBackend\Controller\ModifyControllerFactory;
 use PageBackend\Form\PageFormFactory;
 use PageBackend\Form\PageFormInterface;
+use PageBackend\Permissions\Resource\DisplayResource;
+use PageBackend\Permissions\Resource\ModifyResource;
+use UserModel\Permissions\Role\AdminRole;
 use Zend\Navigation\Page\Mvc;
+use Zend\Permissions\Acl\Acl;
 use Zend\Router\Http\Segment;
 
 return [
@@ -133,6 +137,17 @@ return [
                 'type'     => 'phparray',
                 'base_dir' => PAGE_BACKEND_MODULE_ROOT . '/language',
                 'pattern'  => '%s.php',
+            ],
+        ],
+    ],
+
+    'acl' => [
+        AdminRole::NAME   => [
+            DisplayResource::NAME => [
+                Acl::TYPE_ALLOW => null,
+            ],
+            ModifyResource::NAME => [
+                Acl::TYPE_ALLOW => null,
             ],
         ],
     ],

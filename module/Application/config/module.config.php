@@ -13,7 +13,12 @@ use Application\Controller\IndexController;
 use Application\Controller\IndexControllerFactory;
 use Application\I18n\I18nListener;
 use Application\I18n\I18nListenerFactory;
+use Application\Permissions\Resource\IndexResource;
+use UserModel\Permissions\Role\AdminRole;
+use UserModel\Permissions\Role\EditorRole;
+use UserModel\Permissions\Role\GuestRole;
 use Zend\Navigation\Page\Mvc;
+use Zend\Permissions\Acl\Acl;
 use Zend\Router\Http\Segment;
 
 return [
@@ -91,6 +96,28 @@ return [
                 'type'     => 'phparray',
                 'base_dir' => APPLICATION_MODULE_ROOT . '/language',
                 'pattern'  => '%s.php',
+            ],
+        ],
+    ],
+
+    'acl' => [
+        GuestRole::NAME   => [
+            IndexResource::NAME => [
+                Acl::TYPE_ALLOW => [
+                    IndexResource::PRIVILEGE_INDEX,
+                ],
+            ],
+        ],
+        EditorRole::NAME => [
+            IndexResource::NAME => [
+                Acl::TYPE_ALLOW => [
+                    IndexResource::PRIVILEGE_INDEX,
+                ],
+            ],
+        ],
+        AdminRole::NAME   => [
+            IndexResource::NAME => [
+                Acl::TYPE_ALLOW => null,
             ],
         ],
     ],
