@@ -36,7 +36,9 @@
     "ralfeggert/travello-view-helper": "^1.4",
     "ckeditor/ckeditor": "^4.5",
     "zendframework/zend-mvc-i18n": "^1.0",
-    "zendframework/zend-permissions-acl": "^2.6"
+    "zendframework/zend-permissions-acl": "^2.6",
+    "zendframework/zend-authentication": "^2.5",
+    "zendframework/zend-mvc-plugin-identity": "^1.0"
   },
   "require-dev": {
     "zendframework/zend-developer-tools": "^1.1",

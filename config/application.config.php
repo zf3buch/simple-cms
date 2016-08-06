@@ -9,6 +9,7 @@
 
 return [
     'modules' => [
+        'Zend\Mvc\Plugin\Identity',
         'Zend\Mvc\I18n',
         'TravelloViewHelper',
         'Zend\Mvc\Plugin\FlashMessenger',

@@ -8,10 +8,15 @@
  *
  */
 
+use UserFrontend\Authentication\Adapter\AdapterFactory;
+use UserFrontend\Authentication\AuthenticationListenerFactory;
+use UserFrontend\Authentication\AuthenticationListenerInterface;
+use UserFrontend\Authentication\AuthenticationServiceFactory;
 use UserFrontend\Controller\EditController;
 use UserFrontend\Controller\EditControllerFactory;
 use UserFrontend\Controller\ForbiddenController;
 use UserFrontend\Controller\IndexController;
+use UserFrontend\Controller\IndexControllerFactory;
 use UserFrontend\Controller\RegisterController;
 use UserFrontend\Controller\RegisterControllerFactory;
 use UserFrontend\Form\UserEditForm;
@@ -32,6 +37,8 @@ use UserFrontend\View\Helper\ShowRegisterForm;
 use UserModel\Permissions\Role\AdminRole;
 use UserModel\Permissions\Role\EditorRole;
 use UserModel\Permissions\Role\GuestRole;
+use Zend\Authentication\Adapter\AdapterInterface;
+use Zend\Authentication\AuthenticationService;
 use Zend\Navigation\Page\Mvc;
 use Zend\Permissions\Acl\Acl;
 use Zend\Router\Http\Literal;
@@ -90,10 +97,22 @@ return [
 
     'controllers' => [
         'factories' => [
-            IndexController::class     => InvokableFactory::class,
+            IndexController::class     => IndexControllerFactory::class,
             EditController::class      => EditControllerFactory::class,
             RegisterController::class  => RegisterControllerFactory::class,
             ForbiddenController::class => InvokableFactory::class,
+        ],
+    ],
+
+    'service_manager' => [
+        'factories' => [
+            AdapterInterface::class => AdapterFactory::class,
+
+            AuthenticationService::class =>
+                AuthenticationServiceFactory::class,
+
+            AuthenticationListenerInterface::class =>
+                AuthenticationListenerFactory::class,
         ],
     ],
 
