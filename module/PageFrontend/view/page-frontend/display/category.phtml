@@ -18,7 +18,7 @@ $this->headTitle('Kategorie' . $category->getName());
 $this->h1('Kategorie' . $category->getName());
 ?>
 <p class="text-center">
-  <a class="btn btn-default" href="<?= $this->url('home'); ?>">
+  <a class="btn btn-default" href="<?= $this->url('home', [], true); ?>">
     <i class="fa fa-arrow-circle-left"></i> Zurück zur Startseite
   </a>
 </p>
@@ -30,9 +30,9 @@ $this->h1('Kategorie' . $category->getName());
     $text = strip_tags($page->getText());
     $text = implode(' ', array_slice(explode(' ', $text), 0, 50));
 
-    $pageUrl     = $this->url('page', ['url' => $page->getUrl()]);
+    $pageUrl     = $this->url('page', ['url' => $page['url']], true);
     $categoryUrl = $this->url(
-        'category', ['url' => $page->getCategory()->getUrl()]
+        'category', ['url' => $page['category']['url']], true
     );
     ?>
     <div class="col-sm-6">
@@ -65,7 +65,7 @@ $this->h1('Kategorie' . $category->getName());
 </div>
 
 <p class="text-center">
-  <a class="btn btn-default" href="<?= $this->url('home'); ?>">
+  <a class="btn btn-default" href="<?= $this->url('home', [], true); ?>">
     <i class="fa fa-arrow-circle-left"></i> Zurück zur Startseite
   </a>
 </p>
