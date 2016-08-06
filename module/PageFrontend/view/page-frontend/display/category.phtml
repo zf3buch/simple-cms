@@ -33,9 +33,9 @@ $this->headTitle('Kategorie' . $category->getName());
     $text = strip_tags($page->getText());
     $text = implode(' ', array_slice(explode(' ', $text), 0, 50));
 
-    $pageUrl     = $this->url('page', ['url' => $page['url']], true);
+    $pageUrl     = $this->url('page', ['url' => $page->getUrl()], true);
     $categoryUrl = $this->url(
-        'category', ['url' => $page['category']['url']], true
+        'category', ['url' => $page->getCategory()->getUrl()], true
     );
     ?>
     <div class="col-sm-6">
