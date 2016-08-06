@@ -72,6 +72,10 @@ $this->inlineScript()->appendScript('CKEDITOR.replace("page_text");');
 <?php
 $staticElements = [
     [
+        'label' => 'Kategorie',
+        'value' => $page->getCategory()->getName(),
+    ],
+    [
         'label' => 'Angelegt',
         'value' => $page->getCreated()->format('d.m.Y H:i:s'),
     ],
@@ -82,10 +86,6 @@ $staticElements = [
     [
         'label' => 'Status',
         'value' => $page->getStatus(),
-    ],
-    [
-        'label' => 'Kategorie',
-        'value' => $page->getCategory()->getName(),
     ],
 ];
 ?>
