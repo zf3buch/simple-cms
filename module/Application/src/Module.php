@@ -14,6 +14,7 @@ use Application\View\LayoutListener;
 use Zend\EventManager\EventInterface;
 use Zend\ModuleManager\ModuleManagerInterface;
 use Zend\Mvc\MvcEvent;
+use Zend\Session\Config\ConfigInterface;
 
 /**
  * Class Module
@@ -50,6 +51,8 @@ class Module
         $i18nListener = $serviceManager->get(I18nListener::class);
         $i18nListener->attach($eventManager);
 
+        // start session config
+        $sessionConfig = $serviceManager->get(ConfigInterface::class);
     }
 
 
