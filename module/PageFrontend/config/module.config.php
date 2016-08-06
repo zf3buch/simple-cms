@@ -79,11 +79,15 @@ return [
                 'controller'    => DisplayController::class,
                 'action'        => 'category',
                 'useRouteMatch' => true,
+                'resource'      => DisplayResource::NAME,
+                'privilege'     => DisplayResource::PRIVILEGE_CATEGORY,
                 'pages'         => [
                     'page' => [
                         'type'    => Mvc::class,
                         'route'   => 'page',
                         'visible' => false,
+                        'resource'      => DisplayResource::NAME,
+                        'privilege'     => DisplayResource::PRIVILEGE_PAGE,
                     ],
                 ],
             ],

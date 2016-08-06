@@ -41,16 +41,23 @@ class AuthorizationListener extends AbstractListenerAggregate
     private $userAcl;
 
     /**
+     * @var Navigation
+     */
+    private $navigationHelper;
+
+    /**
      * AuthorizationListener constructor.
      *
      * @param AuthenticationServiceInterface $authService
      * @param UserAcl                        $userAcl
+     * @param Navigation                     $navigationHelper
      */
     public function __construct(
-        $authService, UserAcl $userAcl
+        $authService, UserAcl $userAcl, Navigation $navigationHelper
     ) {
-        $this->authService = $authService;
-        $this->userAcl     = $userAcl;
+        $this->authService      = $authService;
+        $this->userAcl          = $userAcl;
+        $this->navigationHelper = $navigationHelper;
     }
 
     /**
@@ -63,6 +70,9 @@ class AuthorizationListener extends AbstractListenerAggregate
     {
         $this->listeners[] = $events->attach(
             MvcEvent::EVENT_ROUTE, [$this, 'authorize'], -3000
+        );
+        $this->listeners[] = $events->attach(
+            MvcEvent::EVENT_DISPATCH, [$this, 'prepareNavigation'], -1000
         );
     }
 
@@ -121,5 +131,16 @@ class AuthorizationListener extends AbstractListenerAggregate
         $resource = strtolower($resource);
 
         return $resource;
+    }
+
+    /**
+     * Prepare navigation
+     *
+     * @param MvcEvent $e
+     */
+    public function prepareNavigation(MvcEvent $e)
+    {
+        $this->navigationHelper->setRole($this->getCurrentRole());
+        $this->navigationHelper->setAcl($this->userAcl);
     }
 }

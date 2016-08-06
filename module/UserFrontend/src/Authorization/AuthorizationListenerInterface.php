@@ -26,4 +26,11 @@ interface AuthorizationListenerInterface extends ListenerAggregateInterface
      * @param MvcEvent $e
      */
     public function authorize(MvcEvent $e);
+
+    /**
+     * Prepare navigation
+     *
+     * @param MvcEvent $e
+     */
+    public function prepareNavigation(MvcEvent $e);
 }
