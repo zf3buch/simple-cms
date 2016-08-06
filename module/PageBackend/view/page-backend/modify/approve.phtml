@@ -90,7 +90,17 @@ $this->h1('page_backend_h1_display_approve');
 <div class="well">
   <form class="form-horizontal">
     <div class="form-group">
-      <label class="col-sm-2 control-label">Angelegt</label>
+      <label class="col-sm-2 control-label">
+        <?= $this->translate('page_backend_label_category') ?>
+      </label>
+      <div class="col-sm-10 form-control-static">
+        <?= $page->getCategory()->getName() ?>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-sm-2 control-label">
+        <?= $this->translate('page_backend_label_created') ?>
+      </label>
       <div class="col-sm-10 form-control-static">
         <?= $this->dateFormat(
             $page->getCreated(),
@@ -100,7 +110,9 @@ $this->h1('page_backend_h1_display_approve');
       </div>
     </div>
     <div class="form-group">
-      <label class="col-sm-2 control-label">Geändert</label>
+      <label class="col-sm-2 control-label">
+        <?= $this->translate('page_backend_label_updated') ?>
+      </label>
       <div class="col-sm-10 form-control-static">
         <?= $this->dateFormat(
             $page->getUpdated(),
@@ -110,31 +122,35 @@ $this->h1('page_backend_h1_display_approve');
       </div>
     </div>
     <div class="form-group">
-      <label class="col-sm-2 control-label">Status</label>
+      <label class="col-sm-2 control-label">
+        <?= $this->translate('page_backend_label_status') ?>
+      </label>
       <div class="col-sm-10 form-control-static">
-        <?= $page->getStatus() ?>
+        <?= $this->translate(
+            'page_model_option_status_' . $page->getStatus()
+        ) ?>
       </div>
     </div>
     <div class="form-group">
-      <label class="col-sm-2 control-label">Unternehmen</label>
-      <div class="col-sm-10 form-control-static">
-        <?= $page->getCategory()->getName() ?>
-      </div>
-    </div>
-    <div class="form-group">
-      <label class="col-sm-2 control-label">Ort</label>
+      <label class="col-sm-2 control-label">
+        <?= $this->translate('page_backend_label_author') ?>
+      </label>
       <div class="col-sm-10 form-control-static">
         <?= $page->getAuthor() ?>
       </div>
     </div>
     <div class="form-group">
-      <label class="col-sm-2 control-label">Titel</label>
+      <label class="col-sm-2 control-label">
+        <?= $this->translate('page_backend_label_title') ?>
+      </label>
       <div class="col-sm-10 form-control-static">
         <?= $page->getTitle() ?>
       </div>
     </div>
     <div class="form-group">
-      <label class="col-sm-2 control-label">Text</label>
+      <label class="col-sm-2 control-label">
+        <?= $this->translate('page_backend_label_text') ?>
+      </label>
       <div class="col-sm-10 form-control-static">
         <?= $page->getText() ?>
       </div>
