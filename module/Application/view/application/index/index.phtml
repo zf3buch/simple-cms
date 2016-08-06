@@ -18,8 +18,10 @@
       $text = strip_tags($page['text']);
       $text = implode(' ', array_slice(explode(' ', $text), 0, 50));
 
-      $pageUrl = $this->url('page', ['url' => $page['url']]);
-      $categoryUrl = $this->url('category', ['url' => $page['category']['url']]);
+      $pageUrl     = $this->url('page', ['url' => $page['url']], true);
+      $categoryUrl = $this->url(
+          'category', ['url' => $page['category']['url']], true
+      );
     ?>
     <div class="col-sm-6">
       <div class="panel panel-primary">
