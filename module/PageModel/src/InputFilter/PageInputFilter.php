@@ -67,14 +67,14 @@ class PageInputFilter extends InputFilter
                         'name'                   => NotEmpty::class,
                         'break_chain_on_failure' => true,
                         'options'                => [
-                            'message' => 'Bitte Status eingeben!',
+                            'message' => 'page_model_message_status_missing',
                         ],
                     ],
                     [
                         'name'    => InArray::class,
                         'options' => [
                             'haystack' => $this->statusOptions,
-                            'message'  => 'Ungültiger Status!',
+                            'message'  => 'page_model_message_status_invalid',
                         ],
                     ],
                 ],
@@ -91,14 +91,14 @@ class PageInputFilter extends InputFilter
                         'name'                   => NotEmpty::class,
                         'break_chain_on_failure' => true,
                         'options'                => [
-                            'message' => 'Bitte Kategorie eingeben!',
+                            'message' => 'page_model_message_category_missing',
                         ],
                     ],
                     [
                         'name'    => InArray::class,
                         'options' => [
                             'haystack' => $this->categoryOptions,
-                            'message'  => 'Unbekannte Kategorie!',
+                            'message'  => 'page_model_message_category_invalid',
                         ],
                     ],
                 ],
@@ -118,7 +118,7 @@ class PageInputFilter extends InputFilter
                         'name'                   => NotEmpty::class,
                         'break_chain_on_failure' => true,
                         'options'                => [
-                            'message' => 'Bitte Seitentitel eingeben!',
+                            'message' => 'page_model_message_title_missing',
                         ],
                     ],
                     [
@@ -126,7 +126,7 @@ class PageInputFilter extends InputFilter
                         'options' => [
                             'min'      => 3,
                             'max'      => 64,
-                            'message'  => 'Nur %min%-%max% Zeichen erlaubt!',
+                            'message'  => 'page_model_message_title_invalid',
                         ],
                     ],
                 ],
@@ -146,14 +146,14 @@ class PageInputFilter extends InputFilter
                         'name'                   => NotEmpty::class,
                         'break_chain_on_failure' => true,
                         'options'                => [
-                            'message' => 'Bitte Text der Seite eingeben!',
+                            'message' => 'page_model_message_text_missing',
                         ],
                     ],
                     [
                         'name'    => StringLength::class,
                         'options' => [
                             'min'      => 200,
-                            'message'  => 'Mindestens %min% Zeichen eingeben!',
+                            'message'  => 'page_model_message_text_invalid',
                         ],
                     ],
                 ],
@@ -173,7 +173,7 @@ class PageInputFilter extends InputFilter
                         'name'                   => NotEmpty::class,
                         'break_chain_on_failure' => true,
                         'options'                => [
-                            'message' => 'Bitte Autor eingeben!',
+                            'message' => 'page_model_message_author_missing',
                         ],
                     ],
                     [
@@ -181,7 +181,7 @@ class PageInputFilter extends InputFilter
                         'options' => [
                             'min'      => 3,
                             'max'      => 64,
-                            'message'  => 'Nur %min%-%max% Zeichen erlaubt!',
+                            'message'  => 'page_model_message_author_invalid',
                         ],
                     ],
                 ],

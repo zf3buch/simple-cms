@@ -16,7 +16,10 @@ $page = $this->page;
 $listLink = $this->url(
     'category', ['url' => $page->getCategory()->getUrl()], true
 );
-$listText = 'Zurück zur Kategorie ' . $page->getCategory()->getName();
+$listText = sprintf(
+    $this->translate('page_frontend_action_back_category'),
+    $page->getCategory()->getName()
+);
 
 $this->headTitle($page->getTitle());
 $this->h1($page->getTitle());
@@ -32,7 +35,10 @@ $this->h1($page->getTitle());
       <strong><?= $page->getTitle(); ?></strong>
     </div>
     <div class="right-text">
-      Autor: <?= $page->getAuthor(); ?>
+      <?= sprintf(
+          $this->translate('page_frontend_label_author'),
+          $page->getAuthor()
+      ) ?>
     </div>
   </div>
   <div class="panel-body">
@@ -45,14 +51,22 @@ $this->h1($page->getTitle());
           <img class="img-responsive" src="<?= $page->getCategory()->getImage() ?>">
         </a>
       </p>
-      <h5><strong>Kategorie: <?= $page->getCategory()->getName() ?></strong></h5>
+      <h5><strong>
+          <?= sprintf(
+              $this->translate('page_frontend_label_category'),
+              $page->getCategory()->getName()
+          ) ?>
+        </strong></h5>
       <p><?= $page->getCategory()->getDescription() ?></p>
     </div>
   </div>
   <div class="panel-footer clearfix">
     <div class="text-center">
       <div class="label label-primary">
-        Letzte Änderung: <?= $page->getUpdated()->format('d.m.Y H:i:s') ?>
+        <?= sprintf(
+            $this->translate('page_frontend_label_last_update'),
+            $page->getUpdated()->format('d.m.Y H:i:s')
+        ) ?>
       </div>
     </div>
   </div>

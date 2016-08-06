@@ -101,7 +101,7 @@ return [
             'page-backend' => [
                 'type'          => Mvc::class,
                 'order'         => '900',
-                'label'         => 'Seiten administrieren',
+                'label'         => 'page_backend_navigation_admin',
                 'route'         => 'page-backend',
                 'controller'    => DisplayController::class,
                 'action'        => 'index',
@@ -123,6 +123,16 @@ return [
                         'visible' => false,
                     ],
                 ],
+            ],
+        ],
+    ],
+
+    'translator' => [
+        'translation_file_patterns' => [
+            [
+                'type'     => 'phparray',
+                'base_dir' => PAGE_BACKEND_MODULE_ROOT . '/language',
+                'pattern'  => '%s.php',
             ],
         ],
     ],

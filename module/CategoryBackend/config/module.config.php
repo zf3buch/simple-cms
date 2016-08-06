@@ -106,7 +106,7 @@ return [
             'category-backend' => [
                 'type'          => Mvc::class,
                 'order'         => '950',
-                'label'         => 'Kategorien administrieren',
+                'label'         => 'category_backend_navigation_admin',
                 'route'         => 'category-backend',
                 'controller'    => DisplayController::class,
                 'action'        => 'index',
@@ -128,6 +128,16 @@ return [
                         'visible' => false,
                     ],
                 ],
+            ],
+        ],
+    ],
+
+    'translator' => [
+        'translation_file_patterns' => [
+            [
+                'type'     => 'phparray',
+                'base_dir' => CATEGORY_BACKEND_MODULE_ROOT . '/language',
+                'pattern'  => '%s.php',
             ],
         ],
     ],

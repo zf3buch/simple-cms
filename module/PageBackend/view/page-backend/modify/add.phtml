@@ -15,8 +15,8 @@ $form = $this->pageForm;
 
 $listLink = $this->url('page-backend', [], true);
 
-$this->headTitle('Seite anlegen');
-$this->h1('Seite anlegen');
+$this->headTitle('page_backend_title_display_add');
+$this->h1('page_backend_h1_display_add');
 
 $this->inlineScript()->prependFile(
     '/assets/vendor/ckeditor/ckeditor.js', 'text/javascript'
@@ -26,7 +26,9 @@ $this->inlineScript()->appendScript('CKEDITOR.replace("page_text");');
 <p>
   <a href="<?= $listLink ?>" class="btn btn-default">
     <i class="fa fa-list"></i>
-    <span class="hidden-xs hidden-sm">Übersicht</span>
+    <span class="hidden-xs hidden-sm">
+      <?= $this->translate('page_backend_action_overview') ?>
+    </span>
   </a>
 </p>
 <div class="well">

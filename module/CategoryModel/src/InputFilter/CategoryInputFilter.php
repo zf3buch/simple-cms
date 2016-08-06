@@ -57,14 +57,14 @@ class CategoryInputFilter extends InputFilter
                         'name'                   => NotEmpty::class,
                         'break_chain_on_failure' => true,
                         'options'                => [
-                            'message' => 'Bitte Status eingeben!',
+                            'message' => 'category_model_message_status_missing',
                         ],
                     ],
                     [
                         'name'    => InArray::class,
                         'options' => [
                             'haystack' => $this->statusOptions,
-                            'message'  => 'Ungültiger Status!',
+                            'message'  => 'category_model_message_status_invalid',
                         ],
                     ],
                 ],
@@ -84,7 +84,7 @@ class CategoryInputFilter extends InputFilter
                         'name'                   => NotEmpty::class,
                         'break_chain_on_failure' => true,
                         'options'                => [
-                            'message' => 'Bitte Kategorienamen eingeben!',
+                            'message' => 'category_model_message_name_missing',
                         ],
                     ],
                     [
@@ -92,7 +92,7 @@ class CategoryInputFilter extends InputFilter
                         'options' => [
                             'min'     => 3,
                             'max'     => 64,
-                            'message' => 'Nur %min%-%max% Zeichen erlaubt!',
+                            'message' => 'category_model_message_name_invalid!',
                         ],
                     ],
                 ],
@@ -112,14 +112,14 @@ class CategoryInputFilter extends InputFilter
                         'name'                   => NotEmpty::class,
                         'break_chain_on_failure' => true,
                         'options'                => [
-                            'message' => 'Bitte Beschreibung eingeben!',
+                            'message' => 'category_model_message_description_missing',
                         ],
                     ],
                     [
                         'name'    => StringLength::class,
                         'options' => [
                             'min'     => 30,
-                            'message' => 'Mindestens %min% Zeichen!',
+                            'message' => 'category_model_message_description_invalid',
                         ],
                     ],
                 ],
@@ -137,7 +137,7 @@ class CategoryInputFilter extends InputFilter
                         'name'    => MimeType::class,
                         'options' => [
                             'mimeType' => 'image/jpeg,image/jpg',
-                            'message'  => 'Nur JPG Grafiken erlaubt!',
+                            'message'  => 'category_model_message_image_type',
                         ],
                     ],
                     [
@@ -147,7 +147,7 @@ class CategoryInputFilter extends InputFilter
                             'maxWidth'  => '600',
                             'minHeight' => '600',
                             'maxHeight' => '600',
-                            'message'   => 'Nur 600x600 Pixel erlaubt!',
+                            'message'   => 'category_model_message_image_size',
                         ],
                     ],
                 ],

@@ -40,7 +40,7 @@ class CategoryRepository implements CategoryRepositoryInterface
     }
 
     /**
-     * Get all companies for a given page
+     * Get all categories for a given page
      *
      * @param int $page
      * @param int $count

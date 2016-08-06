@@ -74,7 +74,7 @@ class PageForm extends Form implements PageFormInterface
                 ],
                 'options'    => [
                     'value_options' => $this->statusOptions,
-                    'label'         => 'Status',
+                    'label'         => 'page_backend_label_status',
                 ],
             ]
         );
@@ -88,7 +88,7 @@ class PageForm extends Form implements PageFormInterface
                 ],
                 'options'    => [
                     'value_options' => $this->categoryOptions,
-                    'label'         => 'Kategorie',
+                    'label'         => 'page_backend_label_category',
                 ],
             ]
         );
@@ -101,7 +101,7 @@ class PageForm extends Form implements PageFormInterface
                     'class' => 'form-control',
                 ],
                 'options'    => [
-                    'label' => 'Autor',
+                    'label' => 'page_backend_label_author',
                 ],
             ]
         );
@@ -114,7 +114,7 @@ class PageForm extends Form implements PageFormInterface
                     'class' => 'form-control',
                 ],
                 'options'    => [
-                    'label' => 'Titel',
+                    'label' => 'page_backend_label_title',
                 ],
             ]
         );
@@ -128,7 +128,7 @@ class PageForm extends Form implements PageFormInterface
                     'class' => 'form-control',
                 ],
                 'options'    => [
-                    'label' => 'Text',
+                    'label' => 'page_backend_label_text',
                 ],
             ]
         );
@@ -141,7 +141,7 @@ class PageForm extends Form implements PageFormInterface
                 'attributes' => [
                     'id'    => 'save_page',
                     'class' => 'btn btn-primary',
-                    'value' => 'Seite speichern',
+                    'value' => 'page_backend_action_save',
                 ],
             ]
         );

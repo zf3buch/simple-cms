@@ -74,7 +74,7 @@ class ModifyController extends AbstractActionController
 
                 if ($result) {
                     $this->flashMessenger()->addSuccessMessage(
-                        'Die neue Kategorie wurde gespeichert!'
+                        'category_backend_message_saved_category'
                     );
 
                     return $this->redirect()->toRoute(
@@ -92,16 +92,16 @@ class ModifyController extends AbstractActionController
 
             if (isset($messages['csrf'])) {
                 $this->flashMessenger()->addErrorMessage(
-                    'Zeitüberschreitung! Bitte Formular erneut absenden!'
+                    'category_backend_message_form_timeout'
                 );
             } else {
                 $this->flashMessenger()->addErrorMessage(
-                    'Bitte überprüfen Sie die Daten der Kategorie!'
+                    'category_backend_message_check_data'
                 );
             }
         } else {
             $this->flashMessenger()->addInfoMessage(
-                'Sie können die neue Kategorie nun anlegen!'
+                'category_backend_message_create_category'
             );
         }
 
@@ -162,7 +162,7 @@ class ModifyController extends AbstractActionController
 
                 if ($result) {
                     $this->flashMessenger()->addSuccessMessage(
-                        'Die Kategorie wurde gespeichert!'
+                        'category_backend_message_saved_category'
                     );
 
                     return $this->redirect()->toRoute(
@@ -180,16 +180,16 @@ class ModifyController extends AbstractActionController
 
             if (isset($messages['csrf'])) {
                 $this->flashMessenger()->addErrorMessage(
-                    'Zeitüberschreitung! Bitte Formular erneut absenden!'
+                    'category_backend_message_form_timeout'
                 );
             } else {
                 $this->flashMessenger()->addErrorMessage(
-                    'Bitte überprüfen Sie die Daten der Kategorie!'
+                    'category_backend_message_check_data'
                 );
             }
         } else {
             $this->flashMessenger()->addInfoMessage(
-                'Sie können die Kategorie nun bearbeiten!'
+                'category_backend_message_update_category'
             );
         }
 
@@ -235,7 +235,7 @@ class ModifyController extends AbstractActionController
             $this->categoryRepository->deleteCategory($category);
 
             $this->flashMessenger()->addSuccessMessage(
-                'Die Kategorie wurde gelöscht!'
+                'category_backend_message_deleted_category'
             );
 
             return $this->redirect()->toRoute('category-backend', [], true);
@@ -274,7 +274,7 @@ class ModifyController extends AbstractActionController
             $this->categoryRepository->saveCategory($category);
 
             $this->flashMessenger()->addSuccessMessage(
-                'Die Kategorie wurde genehmigt!'
+                'category_backend_message_approved_category'
             );
 
             return $this->redirect()->toRoute(
@@ -315,7 +315,7 @@ class ModifyController extends AbstractActionController
             $this->categoryRepository->saveCategory($category);
 
             $this->flashMessenger()->addSuccessMessage(
-                'Die Kategorie wurde gesperrt!'
+                'category_backend_message_blocked_category'
             );
 
             return $this->redirect()->toRoute(

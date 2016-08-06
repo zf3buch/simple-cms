@@ -34,8 +34,8 @@ $blockLink   = $this->url(
     'category-backend/modify', ['action' => 'block', 'id' => $category->getId()], true
 );
 
-$this->headTitle('Kategorien bearbeiten');
-$this->h1('Kategorien bearbeiten');
+$this->headTitle('category_backend_title_display_edit');
+$this->h1('category_backend_h1_display_edit');
 
 $this->inlineScript()->prependFile(
     '/assets/vendor/ckeditor/ckeditor.js', 'text/javascript'
@@ -45,43 +45,57 @@ $this->inlineScript()->appendScript('CKEDITOR.replace("category_description");')
 <p>
   <a href="<?= $showLink ?>" class="btn btn-default">
     <i class="fa fa-file-text-o"></i>
-    <span class="hidden-xs hidden-sm">Anzeigen</span>
+    <span class="hidden-xs hidden-sm">
+      <?= $this->translate('category_backend_action_show_short') ?>
+    </span>
   </a>
   <a href="<?= $editLink ?>" class="btn btn-primary">
     <i class="fa fa-pencil"></i>
-    <span class="hidden-xs hidden-sm">Bearbeiten</span>
+    <span class="hidden-xs hidden-sm">
+      <?= $this->translate('category_backend_action_edit_short') ?>
+    </span>
   </a>
   <a href="<?= $deleteLink ?>" class="btn btn-default">
     <i class="fa fa-trash-o"></i>
-    <span class="hidden-xs hidden-sm">Löschen</span>
+    <span class="hidden-xs hidden-sm">
+      <?= $this->translate('category_backend_action_delete_short') ?>
+    </span>
   </a>
   <a href="<?= $approveLink ?>" class="btn btn-default">
     <i class="fa fa-thumbs-o-up"></i>
-    <span class="hidden-xs hidden-sm">Freigeben</span>
+    <span class="hidden-xs hidden-sm">
+      <?= $this->translate('category_backend_action_approve_short') ?>
+    </span>
   </a>
   <a href="<?= $blockLink ?>" class="btn btn-default">
     <i class="fa fa-thumbs-o-down"></i>
-    <span class="hidden-xs hidden-sm">Sperren</span>
+    <span class="hidden-xs hidden-sm">
+      <?= $this->translate('category_backend_action_block_short') ?>
+    </span>
   </a>
   <a href="<?= $listLink ?>" class="btn btn-default">
     <i class="fa fa-list"></i>
-    <span class="hidden-xs hidden-sm">Übersicht</span>
+    <span class="hidden-xs hidden-sm">
+      <?= $this->translate('category_backend_action_overview') ?>
+    </span>
   </a>
 </p>
 <?php
 $staticElements = [
     [
-        'label' => 'Bild',
+        'label' => $this->translate('category_backend_label_image'),
         'value' => '<img src="' . $category->getImage()
             . '" class="row col-xs-3 img-responsive">',
     ],
     [
-        'label' => 'Geändert',
+        'label' => $this->translate('category_backend_label_updated'),
         'value' => $category->getUpdated()->format('d.m.Y H:i:s'),
     ],
     [
-        'label' => 'Status',
-        'value' => $category->getStatus(),
+        'label' => $this->translate('category_backend_label_status'),
+        'value' => $this->translate(
+            'category_model_option_status_' . $category->getStatus()
+        ),
     ],
 ];
 ?>

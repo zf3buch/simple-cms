@@ -41,4 +41,14 @@ return [
             PageInputFilter::class => PageInputFilterFactory::class,
         ],
     ],
+
+    'translator' => [
+        'translation_file_patterns' => [
+            [
+                'type'     => 'phparray',
+                'base_dir' => PAGE_MODEL_MODULE_ROOT . '/language',
+                'pattern'  => '%s.php',
+            ],
+        ],
+    ],
 ];

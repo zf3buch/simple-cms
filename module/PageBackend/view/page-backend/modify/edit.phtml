@@ -34,57 +34,70 @@ $blockLink   = $this->url(
     'page-backend/modify', ['action' => 'block', 'id' => $page->getId()], true
 );
 
-$this->headTitle('Seite bearbeiten');
-$this->h1('Seite bearbeiten');
+$this->headTitle('page_backend_title_display_edit');
+$this->h1('page_backend_h1_display_edit');
 
 $this->inlineScript()->prependFile(
     '/assets/vendor/ckeditor/ckeditor.js', 'text/javascript'
 );
 $this->inlineScript()->appendScript('CKEDITOR.replace("page_text");');
 ?>
-
 <p>
   <a href="<?= $showLink ?>" class="btn btn-default">
     <i class="fa fa-file-text-o"></i>
-    <span class="hidden-xs hidden-sm">Anzeigen</span>
+    <span class="hidden-xs hidden-sm">
+      <?= $this->translate('page_backend_action_show_short') ?>
+    </span>
   </a>
   <a href="<?= $editLink ?>" class="btn btn-primary">
     <i class="fa fa-pencil"></i>
-    <span class="hidden-xs hidden-sm">Bearbeiten</span>
+    <span class="hidden-xs hidden-sm">
+      <?= $this->translate('page_backend_action_edit_short') ?>
+    </span>
   </a>
   <a href="<?= $deleteLink ?>" class="btn btn-default">
     <i class="fa fa-trash-o"></i>
-    <span class="hidden-xs hidden-sm">Löschen</span>
+    <span class="hidden-xs hidden-sm">
+      <?= $this->translate('page_backend_action_delete_short') ?>
+    </span>
   </a>
   <a href="<?= $approveLink ?>" class="btn btn-default">
     <i class="fa fa-thumbs-o-up"></i>
-    <span class="hidden-xs hidden-sm">Freigeben</span>
+    <span class="hidden-xs hidden-sm">
+      <?= $this->translate('page_backend_action_approve_short') ?>
+    </span>
   </a>
   <a href="<?= $blockLink ?>" class="btn btn-default">
     <i class="fa fa-thumbs-o-down"></i>
-    <span class="hidden-xs hidden-sm">Sperren</span>
+    <span class="hidden-xs hidden-sm">
+      <?= $this->translate('page_backend_action_block_short') ?>
+    </span>
   </a>
   <a href="<?= $listLink ?>" class="btn btn-default">
     <i class="fa fa-list"></i>
-    <span class="hidden-xs hidden-sm">Übersicht</span>
+    <span class="hidden-xs hidden-sm">
+      <?= $this->translate('page_backend_action_overview') ?>
+    </span>
   </a>
 </p>
 <?php
 $staticElements = [
     [
-        'label' => 'Angelegt',
+        'label' => $this->translate('page_backend_label_created'),
         'value' => $page->getCreated()->format('d.m.Y H:i:s'),
     ],
     [
-        'label' => 'Geändert',
+        'label' => $this->translate('page_backend_label_updated'),
         'value' => $page->getUpdated()->format('d.m.Y H:i:s'),
     ],
     [
-        'label' => 'Status',
-        'value' => $page->getStatus(),
+        'label' => $this->translate('page_backend_label_status'),
+        'value' => $this->translate(
+            'page_model_option_status_' . $page->getStatus()
+        ),
     ],
     [
-        'label' => 'Kategorie',
+        'label' => $this->translate('page_backend_label_category'),
         'value' => $page->getCategory()->getName(),
     ],
 ];

@@ -70,7 +70,7 @@ class ModifyController extends AbstractActionController
 
                 if ($result) {
                     $this->flashMessenger()->addSuccessMessage(
-                        'Die neue Seite wurde gespeichert!'
+                        'page_backend_message_saved_page'
                     );
 
                     return $this->redirect()->toRoute(
@@ -88,16 +88,16 @@ class ModifyController extends AbstractActionController
 
             if (isset($messages['csrf'])) {
                 $this->flashMessenger()->addErrorMessage(
-                    'Zeitüberschreitung! Bitte Formular erneut absenden!'
+                    'page_backend_message_form_timeout'
                 );
             } else {
                 $this->flashMessenger()->addErrorMessage(
-                    'Bitte überprüfen Sie die Daten der Seite!'
+                    'page_backend_message_check_data'
                 );
             }
         } else {
             $this->flashMessenger()->addInfoMessage(
-                'Sie können die neue Seite nun anlegen!'
+                'page_backend_message_create_page'
             );
         }
 
@@ -146,7 +146,7 @@ class ModifyController extends AbstractActionController
 
                 if ($result) {
                     $this->flashMessenger()->addSuccessMessage(
-                        'Die Seite wurde gespeichert!'
+                        'page_backend_message_saved_page'
                     );
 
                     return $this->redirect()->toRoute(
@@ -164,16 +164,16 @@ class ModifyController extends AbstractActionController
 
             if (isset($messages['csrf'])) {
                 $this->flashMessenger()->addErrorMessage(
-                    'Zeitüberschreitung! Bitte Formular erneut absenden!'
+                    'page_backend_message_form_timeout'
                 );
             } else {
                 $this->flashMessenger()->addErrorMessage(
-                    'Bitte überprüfen Sie die Daten der Seite!'
+                    'page_backend_message_check_data'
                 );
             }
         } else {
             $this->flashMessenger()->addInfoMessage(
-                'Sie können die Seite nun bearbeiten!'
+                'page_backend_message_update_page'
             );
         }
 
@@ -217,7 +217,7 @@ class ModifyController extends AbstractActionController
             $this->pageRepository->deletePage($page);
 
             $this->flashMessenger()->addSuccessMessage(
-                'Die Seite wurde gelöscht!'
+                'page_backend_message_deleted_page'
             );
 
             return $this->redirect()->toRoute('page-backend', [], true);
@@ -254,7 +254,7 @@ class ModifyController extends AbstractActionController
             $this->pageRepository->savePage($page);
 
             $this->flashMessenger()->addSuccessMessage(
-                'Die Seite wurde genehmigt!'
+                'page_backend_message_approved_page'
             );
 
             return $this->redirect()->toRoute(
@@ -293,7 +293,7 @@ class ModifyController extends AbstractActionController
             $this->pageRepository->savePage($page);
 
             $this->flashMessenger()->addSuccessMessage(
-                'Die Seite wurde gesperrt!'
+                'page_backend_message_blocked_page'
             );
 
             return $this->redirect()->toRoute(

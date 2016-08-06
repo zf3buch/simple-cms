@@ -15,8 +15,8 @@ $form = $this->categoryForm;
 
 $listLink = $this->url('category-backend', [], true);
 
-$this->headTitle('Kategorien anlegen');
-$this->h1('Kategorien anlegen');
+$this->headTitle('category_backend_title_display_add');
+$this->h1('category_backend_h1_display_add');
 
 $this->inlineScript()->prependFile(
     '/assets/vendor/ckeditor/ckeditor.js', 'text/javascript'
@@ -26,7 +26,9 @@ $this->inlineScript()->appendScript('CKEDITOR.replace("category_description");')
 <p>
   <a href="<?= $listLink ?>" class="btn btn-default">
     <i class="fa fa-list"></i>
-    <span class="hidden-xs hidden-sm">Übersicht</span>
+    <span class="hidden-xs hidden-sm">
+      <?= $this->translate('category_backend_action_overview') ?>
+    </span>
   </a>
 </p>
 <div class="well">

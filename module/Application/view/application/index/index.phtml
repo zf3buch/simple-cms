@@ -9,7 +9,7 @@
 
 use PageModel\Entity\PageEntity;
 
-$this->h1('Willkommen zum Simple CMS!');
+$this->h1($this->translate('application_h1_index_index'));
 ?>
 <div class="row">
   <?php /** @var PageEntity $page */ ?>
@@ -40,10 +40,13 @@ $this->h1('Willkommen zum Simple CMS!');
           <p><?= $text; ?> ...</p>
           <p class="text-center">
             <a href="<?= $pageUrl; ?>" class="btn btn-primary">
-              Seite anzeigen
+              <?= $this->translate('page_frontend_action_show_page') ?>
             </a>
             <a href="<?= $categoryUrl; ?>" class="btn btn-primary">
-              Alle <?= $page->getCategory()->getName() ?> Seiten
+              <?= sprintf(
+                  $this->translate('page_frontend_action_show_category'),
+                  $page->getCategory()->getName()
+              ) ?>
             </a>
           </p>
         </div>

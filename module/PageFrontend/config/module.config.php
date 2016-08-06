@@ -69,7 +69,7 @@ return [
             'category' => [
                 'type'          => Mvc::class,
                 'order'         => '200',
-                'label'         => 'Seiten',
+                'label'         => 'page_frontend_navigation_pages',
                 'route'         => 'category',
                 'controller'    => DisplayController::class,
                 'action'        => 'category',
@@ -81,6 +81,16 @@ return [
                         'visible' => false,
                     ],
                 ],
+            ],
+        ],
+    ],
+
+    'translator' => [
+        'translation_file_patterns' => [
+            [
+                'type'     => 'phparray',
+                'base_dir' => PAGE_FRONTEND_MODULE_ROOT . '/language',
+                'pattern'  => '%s.php',
             ],
         ],
     ],

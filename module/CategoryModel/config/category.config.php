@@ -10,8 +10,8 @@
 
 return [
     'status_options' => [
-        'new'      => 'neu',
-        'approved' => 'genehmigt',
-        'blocked'  => 'gesperrt',
+        'new'      => 'category_model_option_status_new',
+        'approved' => 'category_model_option_status_approved',
+        'blocked'  => 'category_model_option_status_blocked',
     ],
 ];

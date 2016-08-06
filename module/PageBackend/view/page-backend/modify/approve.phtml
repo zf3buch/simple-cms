@@ -30,46 +30,61 @@ $blockLink   = $this->url(
     'page-backend/modify', ['action' => 'block', 'id' => $page->getId()], true
 );
 
-$this->headTitle('Seite freigeben');
-$this->h1('Seite freigeben');
+$this->headTitle('page_backend_title_display_approve');
+$this->h1('page_backend_h1_display_approve');
 ?>
 <div class="alert alert-danger">
   <p>
-    <strong>Möchten Sie diese Seite freigeben?</strong>
+    <strong>
+      <?= $this->translate('page_backend_message_approve_page') ?>
+    </strong>
   </p>
   <p>
-    <a class="btn btn-danger" href="<?= $approveLink ?>?approve=yes">
-      Seite freigeben
+    <a class="btn btn-danger"
+       href="<?= $approveLink ?>?approve=yes">
+      <?= $this->translate('page_backend_action_approve') ?>
     </a>
     <a class="btn btn-default" href="<?= $showLink ?>">
-      Abbrechen
+      <?= $this->translate('page_backend_action_cancel') ?>
     </a>
   </p>
 </div>
 <p>
   <a href="<?= $showLink ?>" class="btn btn-default">
     <i class="fa fa-file-text-o"></i>
-    <span class="hidden-xs hidden-sm">Anzeigen</span>
+    <span class="hidden-xs hidden-sm">
+      <?= $this->translate('page_backend_action_show_short') ?>
+    </span>
   </a>
   <a href="<?= $editLink ?>" class="btn btn-default">
     <i class="fa fa-pencil"></i>
-    <span class="hidden-xs hidden-sm">Bearbeiten</span>
+    <span class="hidden-xs hidden-sm">
+      <?= $this->translate('page_backend_action_edit_short') ?>
+    </span>
   </a>
   <a href="<?= $deleteLink ?>" class="btn btn-default">
     <i class="fa fa-trash-o"></i>
-    <span class="hidden-xs hidden-sm">Löschen</span>
+    <span class="hidden-xs hidden-sm">
+      <?= $this->translate('page_backend_action_delete_short') ?>
+    </span>
   </a>
   <a href="<?= $approveLink ?>" class="btn btn-primary">
     <i class="fa fa-thumbs-o-up"></i>
-    <span class="hidden-xs hidden-sm">Freigeben</span>
+    <span class="hidden-xs hidden-sm">
+      <?= $this->translate('page_backend_action_approve_short') ?>
+    </span>
   </a>
   <a href="<?= $blockLink ?>" class="btn btn-default">
     <i class="fa fa-thumbs-o-down"></i>
-    <span class="hidden-xs hidden-sm">Sperren</span>
+    <span class="hidden-xs hidden-sm">
+      <?= $this->translate('page_backend_action_block_short') ?>
+    </span>
   </a>
   <a href="<?= $listLink ?>" class="btn btn-default">
     <i class="fa fa-list"></i>
-    <span class="hidden-xs hidden-sm">Übersicht</span>
+    <span class="hidden-xs hidden-sm">
+      <?= $this->translate('page_backend_action_overview') ?>
+    </span>
   </a>
 </p>
 <div class="well">

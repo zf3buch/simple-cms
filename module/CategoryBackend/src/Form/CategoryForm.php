@@ -91,7 +91,7 @@ class CategoryForm extends Form implements CategoryFormInterface
                 ],
                 'options'    => [
                     'value_options' => $this->statusOptions,
-                    'label'         => 'Status',
+                    'label'         => 'category_backend_label_status',
                 ],
             ]
         );
@@ -104,7 +104,7 @@ class CategoryForm extends Form implements CategoryFormInterface
                     'class' => 'form-control',
                 ],
                 'options'    => [
-                    'label' => 'Kategoriename',
+                    'label' => 'category_backend_label_name',
                 ],
             ]
         );
@@ -118,7 +118,7 @@ class CategoryForm extends Form implements CategoryFormInterface
                     'class' => 'form-control',
                 ],
                 'options'    => [
-                    'label' => 'Beschreibung',
+                    'label' => 'category_backend_label_description',
                 ],
             ]
         );
@@ -131,7 +131,7 @@ class CategoryForm extends Form implements CategoryFormInterface
                     'class' => 'form-control-static',
                 ],
                 'options'    => [
-                    'label' => 'Bild',
+                    'label' => 'category_backend_label_image',
                 ],
             ]
         );
@@ -144,7 +144,7 @@ class CategoryForm extends Form implements CategoryFormInterface
                 'attributes' => [
                     'id'    => 'save_category',
                     'class' => 'btn btn-primary',
-                    'value' => 'Kategorie speichern',
+                    'value' => 'category_backend_action_save',
                 ],
             ]
         );

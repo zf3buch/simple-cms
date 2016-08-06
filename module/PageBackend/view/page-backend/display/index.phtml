@@ -14,16 +14,18 @@ $addLink = $this->url(
     'page-backend/modify', ['action' => 'add'], true
 );
 
-$this->headTitle('Seiten administrieren');
-$this->h1('Seiten administrieren');
+$this->headTitle('page_backend_title_display_index');
+$this->h1('page_backend_h1_display_index');
 ?>
 <table class="table table-condensed table-bordered table-striped">
   <thead>
   <tr>
-    <th>Kategorie</th>
-    <th>Status</th>
-    <th>Titel</th>
-    <th class="hidden-xs">Autor</th>
+    <th><?= $this->translate('page_backend_label_category') ?></th>
+    <th><?= $this->translate('page_backend_label_status') ?></th>
+    <th><?= $this->translate('page_backend_label_title') ?></th>
+    <th class="hidden-xs">
+      <?= $this->translate('page_backend_label_author') ?>
+    </th>
     <th class="text-center">
       <a href="<?= $addLink ?>"><i class="fa fa-plus-square-o"></i></a>
     </th>
@@ -58,7 +60,9 @@ $this->h1('Seiten administrieren');
         <?= $page->getCategory()->getName() ?>
       </td>
       <td>
-        <?= $page->getStatus() ?>
+        <?= $this->translate(
+            'page_model_option_status_' . $page->getStatus()
+        ) ?>
       </td>
       <td>
         <a href="<?= $showLink ?>">
