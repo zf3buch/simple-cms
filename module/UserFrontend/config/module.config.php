@@ -36,6 +36,8 @@ use UserFrontend\View\Helper\ShowFormAbstractFactory;
 use UserFrontend\View\Helper\ShowLoginForm;
 use UserFrontend\View\Helper\ShowLogoutForm;
 use UserFrontend\View\Helper\ShowRegisterForm;
+use UserFrontend\View\Helper\ShowUserWidget;
+use UserFrontend\View\Helper\ShowUserWidgetFactory;
 use UserModel\Permissions\Role\AdminRole;
 use UserModel\Permissions\Role\EditorRole;
 use UserModel\Permissions\Role\GuestRole;
@@ -149,11 +151,15 @@ return [
         'abstract_factories' => [
             ShowFormAbstractFactory::class,
         ],
+        'factories' => [
+            ShowUserWidget::class   => ShowUserWidgetFactory::class,
+        ],
         'aliases'   => [
             'userShowEditForm'     => ShowEditForm::class,
             'userShowLoginForm'    => ShowLoginForm::class,
             'userShowLogoutForm'   => ShowLogoutForm::class,
             'userShowRegisterForm' => ShowRegisterForm::class,
+            'userShowUserWidget'   => ShowUserWidget::class,
         ]
     ],
 
