@@ -1,0 +1,21 @@
+<?php
+/**
+ * ZF3 book Simple CMS Training Application
+ *
+ * @author     Ralf Eggert <ralf@travello.de>
+ * @link       https://github.com/zf3buch/simple-cms
+ * @license    http://opensource.org/licenses/MIT The MIT License (MIT)
+ *
+ */
+
+$this->headTitle('user_frontend_title_register_index');
+$this->h1('user_frontend_h1_register_index');
+?>
+<div class="panel panel-success">
+  <div class="panel-heading">
+    <?= $this->translate('user_frontend_h2_register') ?>
+  </div>
+  <div class="panel-body">
+    <?= $this->userShowRegisterForm(); ?>
+  </div>
+</div>

@@ -8,7 +8,7 @@
  *
  */
 
-namespace PageFrontend;
+namespace UserModel;
 
 use Zend\Config\Factory;
 use Zend\ModuleManager\Feature\ConfigProviderInterface;
@@ -18,7 +18,7 @@ use Zend\ModuleManager\ModuleManagerInterface;
 /**
  * Class Module
  *
- * @package PageFrontend
+ * @package UserModel
  */
 class Module implements ConfigProviderInterface, InitProviderInterface
 {
@@ -29,7 +29,7 @@ class Module implements ConfigProviderInterface, InitProviderInterface
      */
     public function init(ModuleManagerInterface $manager)
     {
-        define('PAGE_FRONTEND_MODULE_ROOT', __DIR__ . '/..');
+        define('USER_MODEL_MODULE_ROOT', __DIR__ . '/..');
     }
 
     /**
@@ -38,7 +38,7 @@ class Module implements ConfigProviderInterface, InitProviderInterface
     public function getConfig()
     {
         return Factory::fromFile(
-            PAGE_FRONTEND_MODULE_ROOT . '/config/module.config.php'
+            USER_MODEL_MODULE_ROOT . '/config/module.config.php'
         );
     }
 }
