@@ -11,6 +11,7 @@
 namespace UserFrontend;
 
 use UserFrontend\Authentication\AuthenticationListenerInterface;
+use UserFrontend\Authorization\AuthorizationListenerInterface;
 use Zend\Config\Factory;
 use Zend\EventManager\EventInterface;
 use Zend\ModuleManager\Feature\ConfigProviderInterface;
@@ -49,6 +50,12 @@ class Module implements ConfigProviderInterface, InitProviderInterface
             AuthenticationListenerInterface::class
         );
         $authenticationListener->attach($eventManager);
+
+        /** @var AuthorizationListenerInterface $authorizationListener */
+        $authorizationListener = $serviceManager->get(
+            AuthorizationListenerInterface::class
+        );
+        $authorizationListener->attach($eventManager);
     }
 
     /**

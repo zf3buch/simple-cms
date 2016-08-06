@@ -12,6 +12,8 @@ use UserFrontend\Authentication\Adapter\AdapterFactory;
 use UserFrontend\Authentication\AuthenticationListenerFactory;
 use UserFrontend\Authentication\AuthenticationListenerInterface;
 use UserFrontend\Authentication\AuthenticationServiceFactory;
+use UserFrontend\Authorization\AuthorizationListenerFactory;
+use UserFrontend\Authorization\AuthorizationListenerInterface;
 use UserFrontend\Controller\EditController;
 use UserFrontend\Controller\EditControllerFactory;
 use UserFrontend\Controller\ForbiddenController;
@@ -113,6 +115,9 @@ return [
 
             AuthenticationListenerInterface::class =>
                 AuthenticationListenerFactory::class,
+
+            AuthorizationListenerInterface::class =>
+                AuthorizationListenerFactory::class,
         ],
     ],
 
