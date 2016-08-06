@@ -21,9 +21,9 @@ use PageModel\Entity\PageEntity;
       $text = strip_tags($page->getText());
       $text = implode(' ', array_slice(explode(' ', $text), 0, 50));
 
-      $pageUrl = $this->url('page', ['url' => $page->getUrl()]);
+      $pageUrl     = $this->url('page', ['url' => $page['url']], true);
       $categoryUrl = $this->url(
-          'category', ['url' => $page->getCategory()->getUrl()]
+          'category', ['url' => $page['category']['url']], true
       );
     ?>
     <div class="col-sm-6">
