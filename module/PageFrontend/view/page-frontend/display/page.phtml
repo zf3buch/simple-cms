@@ -65,7 +65,11 @@ $this->h1($page->getTitle());
       <div class="label label-primary">
         <?= sprintf(
             $this->translate('page_frontend_label_last_update'),
-            $page->getUpdated()->format('d.m.Y H:i:s')
+            $this->dateFormat(
+                $page->getUpdated(),
+                IntlDateFormatter::MEDIUM,
+                IntlDateFormatter::MEDIUM
+            )
         ) ?>
       </div>
     </div>

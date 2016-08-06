@@ -84,11 +84,19 @@ $this->inlineScript()->appendScript('CKEDITOR.replace("page_text");');
 $staticElements = [
     [
         'label' => $this->translate('page_backend_label_created'),
-        'value' => $page->getCreated()->format('d.m.Y H:i:s'),
+        'value' => $this->dateFormat(
+            $page->getCreated(),
+            IntlDateFormatter::MEDIUM,
+            IntlDateFormatter::MEDIUM
+        ),
     ],
     [
         'label' => $this->translate('page_backend_label_updated'),
-        'value' => $page->getUpdated()->format('d.m.Y H:i:s'),
+        'value' => $this->dateFormat(
+            $page->getUpdated(),
+            IntlDateFormatter::MEDIUM,
+            IntlDateFormatter::MEDIUM
+        ),
     ],
     [
         'label' => $this->translate('page_backend_label_status'),

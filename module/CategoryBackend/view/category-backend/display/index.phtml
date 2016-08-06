@@ -74,7 +74,11 @@ $this->h1('category_backend_h1_display_index');
         <?= strip_tags($category->getDescription()) ?>
       </td>
       <td class="hidden-xs">
-        <?= $category->getUpdated()->format('d.m.Y H:i:s') ?>
+        <?= $this->dateFormat(
+            $category->getUpdated(),
+            IntlDateFormatter::MEDIUM,
+            IntlDateFormatter::MEDIUM
+        ) ?>
       </td>
       <td class="text-center">
         <a href="<?= $showLink ?>" class="hidden-xs hidden-sm">

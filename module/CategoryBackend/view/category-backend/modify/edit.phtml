@@ -89,7 +89,11 @@ $staticElements = [
     ],
     [
         'label' => $this->translate('category_backend_label_updated'),
-        'value' => $category->getUpdated()->format('d.m.Y H:i:s'),
+        'value' => $this->dateFormat(
+            $category->getUpdated(),
+            IntlDateFormatter::MEDIUM,
+            IntlDateFormatter::MEDIUM
+        ),
     ],
     [
         'label' => $this->translate('category_backend_label_status'),
