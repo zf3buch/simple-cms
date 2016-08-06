@@ -83,6 +83,10 @@ $this->inlineScript()->appendScript('CKEDITOR.replace("page_text");');
 <?php
 $staticElements = [
     [
+        'label' => $this->translate('page_backend_label_category'),
+        'value' => $page->getCategory()->getName(),
+    ],
+    [
         'label' => $this->translate('page_backend_label_created'),
         'value' => $this->dateFormat(
             $page->getCreated(),
@@ -103,10 +107,6 @@ $staticElements = [
         'value' => $this->translate(
             'page_model_option_status_' . $page->getStatus()
         ),
-    ],
-    [
-        'label' => $this->translate('page_backend_label_category'),
-        'value' => $page->getCategory()->getName(),
     ],
 ];
 ?>

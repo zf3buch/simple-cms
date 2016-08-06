@@ -28,5 +28,5 @@ return [
     // action texts
     'page_frontend_action_show_category' => 'All %1$s pages',
     'page_frontend_action_show_page'     => 'Show page',
-    'page_frontend_action_back_category' => 'Back zo category "%1$s"',
+    'page_frontend_action_back_category' => 'Back to category "%1$s"',
 ];
