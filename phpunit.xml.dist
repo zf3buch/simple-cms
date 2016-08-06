@@ -1,0 +1,41 @@
+<phpunit bootstrap="./vendor/autoload.php" colors="true">
+    <testsuites>
+        <testsuite name="Application\\Tests">
+            <directory>./module/Application/test</directory>
+        </testsuite>
+        <testsuite name="PageFrontend\\Tests">
+            <directory>./module/PageFrontend/test</directory>
+        </testsuite>
+        <testsuite name="PageBackend\\Tests">
+            <directory>./module/PageBackend/test</directory>
+        </testsuite>
+        <testsuite name="PageModel\\Tests">
+            <directory>./module/PageModel/test</directory>
+        </testsuite>
+        <testsuite name="CategoryModel\\Tests">
+            <directory>./module/CategoryModel/test</directory>
+        </testsuite>
+        <testsuite name="CategoryBackend\\Tests">
+            <directory>./module/CategoryBackend/test</directory>
+        </testsuite>
+        <testsuite name="UserModel\\Tests">
+            <directory>./module/UserModel/test</directory>
+        </testsuite>
+        <testsuite name="UserFrontend\\Tests">
+            <directory>./module/UserFrontend/test</directory>
+        </testsuite>
+        <testsuite name="UserBackend\\Tests">
+            <directory>./module/UserBackend/test</directory>
+        </testsuite>
+    </testsuites>
+
+    <filter>
+        <whitelist processUncoveredFilesFromWhitelist="true">
+            <directory suffix=".php">src</directory>
+        </whitelist>
+    </filter>
+
+    <php>
+        <const name="PROJECT_ROOT" value="."/>
+    </php>
+</phpunit>

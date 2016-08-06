@@ -29,7 +29,9 @@ class Module implements ConfigProviderInterface, InitProviderInterface
      */
     public function init(ModuleManagerInterface $manager)
     {
-        define('PAGE_FRONTEND_MODULE_ROOT', __DIR__ . '/..');
+        if (!defined('PAGE_FRONTEND_MODULE_ROOT')) {
+            define('PAGE_FRONTEND_MODULE_ROOT', __DIR__ . '/..');
+        }
     }
 
     /**

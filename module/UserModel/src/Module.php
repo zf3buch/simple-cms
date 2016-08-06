@@ -29,7 +29,9 @@ class Module implements ConfigProviderInterface, InitProviderInterface
      */
     public function init(ModuleManagerInterface $manager)
     {
-        define('USER_MODEL_MODULE_ROOT', __DIR__ . '/..');
+        if (!defined('USER_MODEL_MODULE_ROOT')) {
+            define('USER_MODEL_MODULE_ROOT', __DIR__ . '/..');
+        }
     }
 
     /**

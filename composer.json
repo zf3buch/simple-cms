@@ -41,6 +41,7 @@
     "zendframework/zend-mvc-plugin-identity": "^1.0"
   },
   "require-dev": {
+    "phpunit/phpunit": "^5.0",
     "zendframework/zend-developer-tools": "^1.1",
     "san/san-session-toolbar": "^0.6.3"
   },
@@ -56,6 +57,19 @@
       "UserFrontend\\": "module/UserFrontend/src/",
       "UserBackend\\": "module/UserBackend/src/",
       "Scripts\\": "script/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "ApplicationTest\\": "module/Application/test/",
+      "PageFrontendTest\\": "module/PageFrontend/test/",
+      "PageBackendTest\\": "module/PageBackend/test/",
+      "PageModelTest\\": "module/PageModel/test/",
+      "CategoryModelTest\\": "module/CategoryModel/test/",
+      "CategoryBackendTest\\": "module/CategoryBackend/test/",
+      "UserModelTest\\": "module/UserModel/test/",
+      "UserFrontendTest\\": "module/UserFrontend/test/",
+      "UserBackendTest\\": "module/UserBackend/test/"
     }
   },
   "extra": [],
