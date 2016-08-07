@@ -171,7 +171,7 @@ class CategoryEntity
     }
 
     /**
-     * Update page
+     * Update category
      */
     public function update()
     {
@@ -179,7 +179,7 @@ class CategoryEntity
     }
 
     /**
-     * Approve page
+     * Approve category
      */
     public function approve()
     {
@@ -188,7 +188,7 @@ class CategoryEntity
     }
 
     /**
-     * Block page
+     * Block category
      */
     public function block()
     {
