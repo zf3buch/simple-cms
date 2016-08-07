@@ -21,14 +21,14 @@ use Zend\Paginator\Paginator;
 interface CategoryRepositoryInterface
 {
     /**
-     * Get all companies for a given page
+     * Get all categories for a given page
      *
      * @param int $page
      * @param int $count
      *
      * @return Paginator
      */
-    public function getCompaniesByPage($page = 1, $count = 5);
+    public function getCategoriesByPage($page = 1, $count = 5);
 
     /**
      * Get a single category by id
