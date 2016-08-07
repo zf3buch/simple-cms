@@ -21,7 +21,7 @@ use PHPUnit_Framework_TestCase;
 class DisplayResourceTest extends PHPUnit_Framework_TestCase
 {
     /**
-     * @group page-backend
+     * @group page-frontend
      * @group permissions
      */
     public function testClassExists()
