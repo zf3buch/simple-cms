@@ -43,7 +43,7 @@ class DisplayController extends AbstractActionController
     {
         $page = $this->params()->fromRoute('page', 1);
 
-        $categoryList = $this->categoryRepository->getCompaniesByPage(
+        $categoryList = $this->categoryRepository->getCategoriesByPage(
             $page, 15
         );
 

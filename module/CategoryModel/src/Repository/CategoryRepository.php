@@ -47,7 +47,7 @@ class CategoryRepository implements CategoryRepositoryInterface
      *
      * @return Paginator
      */
-    public function getCompaniesByPage($page = 1, $count = 5)
+    public function getCategoriesByPage($page = 1, $count = 5)
     {
         return $this->categoryStorage->fetchCategoryCollection(
             $page, $count
