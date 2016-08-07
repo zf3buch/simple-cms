@@ -37,14 +37,14 @@ class CategoryRepository implements CategoryRepositoryInterface
     }
 
     /**
-     * Get all companies for a given page
+     * Get all categories for a given page
      *
      * @param int $page
      * @param int $count
      *
      * @return Paginator
      */
-    public function getCompaniesByPage($page = 1, $count = 5)
+    public function getCategoriesByPage($page = 1, $count = 5)
     {
         return $this->categoryStorage->fetchCategoryCollection(
             $page, $count
