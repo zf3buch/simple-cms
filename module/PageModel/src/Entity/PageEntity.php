@@ -214,7 +214,7 @@ class PageEntity
     }
 
     /**
-     * Update advert
+     * Update page
      */
     public function update()
     {
@@ -222,7 +222,7 @@ class PageEntity
     }
 
     /**
-     * Approve advert
+     * Approve page
      */
     public function approve()
     {
@@ -231,7 +231,7 @@ class PageEntity
     }
 
     /**
-     * Block advert
+     * Block page
      */
     public function block()
     {
