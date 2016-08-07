@@ -97,7 +97,7 @@ class UserDbStorage implements UserStorageInterface
     }
 
     /**
-     * Fetch all companies for an option list
+     * Fetch all users for an option list
      *
      * @return mixed
      */

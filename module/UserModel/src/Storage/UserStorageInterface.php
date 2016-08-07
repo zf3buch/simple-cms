@@ -40,7 +40,7 @@ interface UserStorageInterface
     public function fetchUserEntity($id);
 
     /**
-     * Fetch all companies for an option list
+     * Fetch all users for an option list
      *
      * @return mixed
      */
