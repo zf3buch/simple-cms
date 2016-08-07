@@ -179,7 +179,7 @@ class PageDbStorage implements PageStorageInterface
     }
 
     /**
-     * Get next id for advert entity
+     * Get next id for page entity
      *
      * @return integer
      */
