@@ -1,0 +1,4 @@
+"id","registered","updated","status","role","email","password"
+"1","2016-08-06 11:21:32","2016-08-06 11:31:22","approved","editor","editor@simple-cms.de","$2y$10$/ZWVBKC/BHLpV2Y969RLau2K2CQRQv2DLaOrsYrE.0BHbvGmHLA6a"
+"2","2016-08-06 11:21:45","2016-08-06 11:22:12","approved","admin","admin@simple-cms.de","$2y$10$/ZWVBKC/BHLpV2Y969RLau2K2CQRQv2DLaOrsYrE.0BHbvGmHLA6a"
+"3","2016-08-06 11:22:03","2016-08-06 11:22:52","new","editor","new-editor@simple-cms.de","$2y$10$/ZWVBKC/BHLpV2Y969RLau2K2CQRQv2DLaOrsYrE.0BHbvGmHLA6a"
